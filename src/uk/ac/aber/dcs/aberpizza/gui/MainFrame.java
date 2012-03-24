@@ -4,6 +4,9 @@ import java.awt.*;
 import javax.swing.*;
 
 public class MainFrame extends JFrame {
+	DataPanel dataPane;
+	ControllerPanel controllerPane;
+	
 	public MainFrame() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle("AberPizza");
@@ -11,8 +14,8 @@ public class MainFrame extends JFrame {
 		setMinimumSize(new Dimension(1024,800));
 		setVisible(true);
 		
-		DataPanel dataPane = new DataPanel();
-		ControllerPanel controllerPane = new ControllerPanel();
+		dataPane = new DataPanel();
+		controllerPane = new ControllerPanel();
 
 		this.setJMenuBar(new MenuBar());
 		this.add(dataPane, BorderLayout.CENTER);
@@ -22,5 +25,9 @@ public class MainFrame extends JFrame {
 		this.repaint();
 		this.doLayout();
 		
+	}
+	
+	public JTable getItems() {
+		return dataPane.getItems();
 	}
 }

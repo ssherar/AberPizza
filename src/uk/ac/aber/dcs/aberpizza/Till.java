@@ -1,9 +1,8 @@
 package uk.ac.aber.dcs.aberpizza;
 
-import javax.swing.JFrame;
 import javax.swing.UIManager;
 
-import uk.ac.aber.dcs.aberpizza.gui.MainFrame;
+import uk.ac.aber.dcs.aberpizza.controller.Manager;;
 
 public class Till {
 
@@ -13,6 +12,6 @@ public class Till {
 		} catch(Exception e) {
 			
 		}
-		JFrame a = new MainFrame();
+		new Manager();
 	}
 }

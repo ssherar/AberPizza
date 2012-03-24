@@ -11,14 +11,24 @@ public class DataPanel extends JPanel {
 	
 	public DataPanel() {
 		super(new BorderLayout());
-		GridBagConstraints c = new GridBagConstraints();
+
 		Object[][] data = {{new Integer(1), "Pepperoni - Small", new Integer(1), new Double(9.95), new Double(9.95)}};
 		Object[] columnNames = {"UID", "Item Name", "Quantity", "Unitary Price", "Total"};
 		items = new JTable(data, columnNames);
+		
 		JScrollPane scroll = new JScrollPane(items);
 		items.setFillsViewportHeight(true);
 		
 		this.add(scroll, BorderLayout.CENTER);
 	}
+
+	public JTable getItems() {
+		return items;
+	}
+
+	public void setItems(JTable items) {
+		this.items = items;
+	}
+	
 	
 }
