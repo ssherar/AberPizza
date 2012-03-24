@@ -5,21 +5,27 @@ import java.util.LinkedList;
 import javax.swing.*;
 
 public class MenuBar extends JMenuBar {
-	private LinkedList<JMenuItem> file;
-	private LinkedList<JMenuItem> administration;
 	private JMenu fileMenu;
 	private JMenu administrationMenu;
+	private JMenu helpMenu;
 	
 	public MenuBar() {
-		file = new LinkedList<JMenuItem>();
-		administration = new LinkedList<JMenuItem>();
-		
 		fileMenu = new JMenu("File");
+		administrationMenu = new JMenu("Administration");
+		helpMenu = new JMenu("Help");
+		
 		this.populateFile();
+		this.populateAdministration();
+		this.populateHelp();
+		
 		this.add(fileMenu);
+		this.add(administrationMenu);
+		this.add(helpMenu);
 	}
 	
 	private void populateFile() {
+		LinkedList<JMenuItem> file = new LinkedList<JMenuItem>();
+		
 		file.add(new JMenuItem("Exit"));
 		for(int i = 0; i < file.size(); i++) {
 			fileMenu.add(file.get(i));
@@ -27,7 +33,22 @@ public class MenuBar extends JMenuBar {
 	}
 	
 	private void populateAdministration() {
+		LinkedList<JMenuItem> administration = new LinkedList<JMenuItem>();
+		
 		administration.add(new JMenuItem("Sales Report"));
 		administration.add(new JMenuItem("Z-Index"));
+		for(int i = 0; i < administration.size(); i++) {
+			administrationMenu.add(administration.get(i));
+		}
+	}
+	
+	private void populateHelp() {
+		LinkedList<JMenuItem> help = new LinkedList<JMenuItem>();
+		
+		help.add(new JMenuItem("About"));
+		
+		for(int i = 0; i < help.size(); i++) {
+			helpMenu.add(help.get(i));
+		}
 	}
 }
