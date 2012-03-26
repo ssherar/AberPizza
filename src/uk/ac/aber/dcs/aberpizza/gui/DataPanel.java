@@ -20,6 +20,10 @@ public class DataPanel extends JPanel {
 		items.setFillsViewportHeight(true);
 		
 		this.add(scroll, BorderLayout.CENTER);
+		
+		JPanel bottom = new JPanel();
+		bottom.setPreferredSize(new Dimension(0, 150));
+		this.add(bottom, BorderLayout.SOUTH);
 	}
 
 	public JTable getItems() {

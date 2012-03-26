@@ -8,6 +8,7 @@ public class MenuBar extends JMenuBar {
 	private JMenu fileMenu;
 	private JMenu administrationMenu;
 	private JMenu helpMenu;
+
 	
 	public MenuBar() {
 		fileMenu = new JMenu("File");
