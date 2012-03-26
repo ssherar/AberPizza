@@ -24,7 +24,6 @@ public class MainFrame extends JFrame {
 		
 		this.repaint();
 		this.doLayout();
-		
 	}
 	
 	public JTable getItems() {

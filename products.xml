@@ -26,6 +26,8 @@
 	<product>
 		<type>Drink</type>
 		<name>Coke</name>
+		<description>Coca-cola</description>
+		
 		<options>
 			<size price="0.70">Can</size>
 			<size price="1.30">500ml Bottle</size>
