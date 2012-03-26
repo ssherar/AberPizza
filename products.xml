@@ -1,0 +1,35 @@
+<?xml version="1.0" ?>
+<products>
+	<product>
+		<type>Pizza</type>
+		<name>Margerita</name>
+		<description>A basic Cheese and Tomato Pizza</description>
+		<options>
+			<size price="6.99">Small</size>
+			<size price="8.99">Medium</size>
+			<size price="9.99">Large</size>
+		</options>
+	</product>
+	
+	<product>
+		<type>Pizza</type>
+		<name>MeatFeast</name>
+		<description>Chicken, Mince, Sausage and Bacon with Mushrooms, Peppers on a Tomato base</description>
+		<options>
+			<size price="6.99">Personal</size>
+			<size price="8.99">Small</size>
+			<size price="9.99">Medium</size>
+			<size price="11.99">Large</size>
+		</options>
+	</product>
+	
+	<product>
+		<type>Drink</type>
+		<name>Coke</name>
+		<options>
+			<size price="0.70">Can</size>
+			<size price="1.30">500ml Bottle</size>
+			<size price="2.49">2L Bottle</size>
+		</options>
+	</product>
+</products>
