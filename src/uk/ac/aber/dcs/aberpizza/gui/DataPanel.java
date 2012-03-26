@@ -21,8 +21,7 @@ public class DataPanel extends JPanel {
 		
 		this.add(scroll, BorderLayout.CENTER);
 		
-		JPanel bottom = new JPanel();
-		bottom.setPreferredSize(new Dimension(0, 150));
+		Total bottom = new Total();
 		this.add(bottom, BorderLayout.SOUTH);
 	}
 
