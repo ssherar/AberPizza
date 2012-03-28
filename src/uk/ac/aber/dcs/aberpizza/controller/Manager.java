@@ -13,4 +13,6 @@ public class Manager {
 		window = new MainFrame();
 		items = window.getItems();
 	}
+	
+	
 }
