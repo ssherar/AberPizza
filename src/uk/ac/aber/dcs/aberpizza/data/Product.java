@@ -1,6 +1,6 @@
 package uk.ac.aber.dcs.aberpizza.data;
 
-public class Product implements Item {
+public abstract class Product implements Item {
 	private Double price;
 	private String name;
 	private String description;

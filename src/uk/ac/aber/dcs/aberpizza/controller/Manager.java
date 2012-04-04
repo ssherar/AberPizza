@@ -19,10 +19,10 @@ public class Manager {
 		choicesPanel = window.getChoices();
 		
 		ArrayList<Product> choices = new ArrayList<Product>();
-		choices.add(new Product("Margherita", 9.99, "12\" Pizza"));
-		choices.add(new Product("Meatfeast", 9.99, "12\" Pizza"));
-		choices.add(new Product("Texas BBQ", 9.99, "12\" Pizza"));
-		choices.add(new Product("Chicken", 9.99, "12\" Pizza"));
+		choices.add(new Pizza("Margherita", 9.99, "12\" Pizza"));
+		choices.add(new Pizza("Meatfeast", 9.99, "12\" Pizza"));
+		choices.add(new Pizza("Texas BBQ", 9.99, "12\" Pizza"));
+		choices.add(new Pizza("Chicken", 9.99, "12\" Pizza"));
 		choicesPanel.init(choices);
 		
 	}

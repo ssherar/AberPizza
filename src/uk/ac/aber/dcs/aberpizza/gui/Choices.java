@@ -15,9 +15,7 @@ public class Choices extends JPanel {
 	}
 	
 	public void init(ArrayList<Product> choices) {
-		System.out.println(choices);
 		for(Product p : choices) {
-			System.out.println(p.getName());
 			this.add(new JButton(p.getName()));
 		}
 		this.doLayout();
