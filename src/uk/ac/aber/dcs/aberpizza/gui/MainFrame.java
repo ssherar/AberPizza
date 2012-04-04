@@ -29,4 +29,8 @@ public class MainFrame extends JFrame {
 	public JTable getItems() {
 		return dataPane.getItems();
 	}
+	
+	public Choices getChoices() {
+		return controllerPane.getChoices();
+	}
 }
