@@ -1,6 +1,5 @@
-package uk.ac.aber.dcs.aberpizza.controller;
+package uk.ac.aber.dcs.aberpizza.data;
 
-import uk.ac.aber.dcs.aberpizza.data.Product;
 
 public class Pizza extends Product {
 
