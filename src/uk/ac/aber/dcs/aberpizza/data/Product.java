@@ -1,9 +1,12 @@
 package uk.ac.aber.dcs.aberpizza.data;
 
+import java.util.ArrayList;
+
 public abstract class Product implements Item {
 	private Double price;
 	private String name;
 	private String description;
+	private ArrayList<Option> options;
 	
 	public Product(String n, Double p, String d) {
 		price = p;
