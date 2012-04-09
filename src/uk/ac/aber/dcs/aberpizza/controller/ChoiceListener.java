@@ -22,12 +22,18 @@ public class ChoiceListener implements ActionListener {
 		if(this.type == ListeningType.ROOT) {
 			Product item = c.find(arg0.getActionCommand());
 			if(item != null && item.hasOptions()) {
+				this.type = ListeningType.OPTIONS;
 				c.showOptionsPane(c.find(arg0.getActionCommand()));
 			} else {
 				
 			}
 		} else if(this.type == ListeningType.OPTIONS) {
-			
+			//first check if cancelled.
+			if(arg0.getActionCommand() == "Cancel") {
+				this.type = ListeningType.ROOT;
+				c.init();
+				return;
+			}
 		} else {
 			
 		}
