@@ -2,7 +2,9 @@ package uk.ac.aber.dcs.aberpizza.controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
+import uk.ac.aber.dcs.aberpizza.data.Option;
 import uk.ac.aber.dcs.aberpizza.data.Product;
 import uk.ac.aber.dcs.aberpizza.gui.Choices;
 
@@ -15,8 +17,12 @@ public class ChoiceListener implements ActionListener {
 	
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
-		System.out.print(arg0.getActionCommand()+"\t");
-		System.out.println(c.find(arg0.getActionCommand()).getOptions());
+		Product item = c.find(arg0.getActionCommand());
+		if(item != null && item.hasOptions()) {
+			c.showOptionsPane(c.find(arg0.getActionCommand()));
+		} else {
+			
+		}
 	}
 
 }

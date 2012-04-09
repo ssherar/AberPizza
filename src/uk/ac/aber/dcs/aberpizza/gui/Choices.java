@@ -2,6 +2,7 @@ package uk.ac.aber.dcs.aberpizza.gui;
 import javax.swing.*;
 
 import uk.ac.aber.dcs.aberpizza.controller.ChoiceListener;
+import uk.ac.aber.dcs.aberpizza.data.Option;
 import uk.ac.aber.dcs.aberpizza.data.Product;
 
 import java.awt.*;
@@ -21,12 +22,18 @@ public class Choices extends JPanel {
 	
 	public void init(ArrayList<Product> choices) {
 		c = choices;
+		this.init();
+	}
+	
+	public void init() {
+		this.removeAll();
 		for(Product p : c) {
 			JButton tmp = new JButton(p.getName());
 			tmp.addActionListener(l);
 			this.add(tmp);
 		}
 		this.doLayout();
+		this.repaint();
 	}
 	
 	public Product find(String name) {
@@ -36,6 +43,21 @@ public class Choices extends JPanel {
 			}
 		}
 		return null;
+	}
+	
+	public void showOptionsPane(Product item) {
+		this.removeAll();
+		for(Option o : item.getOptions()) {
+			JButton tmp = new JButton(""+o.getSize());
+			//tmp.addActionListener(l);
+			this.add(tmp);
+		}
+		JButton cancel = new JButton("Cancel");
+		cancel.addActionListener(l);
+		this.add(cancel);
+		
+		this.doLayout();
+		this.repaint();
 	}
 }
 

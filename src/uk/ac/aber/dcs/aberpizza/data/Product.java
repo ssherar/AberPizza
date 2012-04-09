@@ -59,4 +59,8 @@ public abstract class Product implements Item {
 		return options;
 	}
 	
+	public boolean hasOptions() {
+		return (this.options.size() == 0) ? false : true;
+	}
+	
 }
