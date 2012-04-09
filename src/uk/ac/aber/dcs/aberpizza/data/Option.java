@@ -1,20 +1,33 @@
 package uk.ac.aber.dcs.aberpizza.data;
 
 public class Option {
-	private String key;
-	private String value;
+	private Sizes size;
+	private Double price;
 	
-	public String getKey() {
-		return key;
+	
+	public Option(Sizes s, Double p) {
+		this.size = s;
+		this.price = p;
 	}
-	public void setKey(String key) {
-		this.key = key;
+	
+	public Sizes getSize() {
+		return size;
 	}
-	public String getValue() {
-		return value;
+	
+	public void setSize(Sizes size) {
+		this.size = size;
 	}
-	public void setValue(String value) {
-		this.value = value;
+	
+	public Double getPrice() {
+		return price;
+	}
+	
+	public void setPrice(Double price) {
+		this.price = price;
+	}
+	
+	public String toString() {
+		return "" + this.size + " : " + this.price;
 	}
 	
 }

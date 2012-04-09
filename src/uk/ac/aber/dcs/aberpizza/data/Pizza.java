@@ -7,5 +7,6 @@ public class Pizza extends Product {
 		super(n, p, d);
 		
 	}
+	
 
 }

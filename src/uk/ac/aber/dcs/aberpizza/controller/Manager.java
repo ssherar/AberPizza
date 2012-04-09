@@ -23,6 +23,7 @@ public class Manager {
 		choices.add(new Pizza("Meatfeast", 9.99, "12\" Pizza"));
 		choices.add(new Pizza("Texas BBQ", 9.99, "12\" Pizza"));
 		choices.add(new Pizza("Chicken", 9.99, "12\" Pizza"));
+		choices.add(new Beverage("Coke", 1.15, "Bottle of Coke"));
 		choicesPanel.init(choices);
 		
 	}

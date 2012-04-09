@@ -8,6 +8,7 @@ public abstract class Product implements Item {
 	private String description;
 	private ArrayList<Option> options;
 	
+	
 	public Product(String n, Double p, String d) {
 		price = p;
 		name = n;

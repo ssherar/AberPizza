@@ -23,6 +23,7 @@ public class DataPanel extends JPanel {
 		
 		Total bottom = new Total();
 		this.add(bottom, BorderLayout.SOUTH);
+		
 	}
 
 	public JTable getItems() {
