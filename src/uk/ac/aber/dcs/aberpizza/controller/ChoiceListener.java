@@ -9,17 +9,25 @@ import uk.ac.aber.dcs.aberpizza.data.Product;
 import uk.ac.aber.dcs.aberpizza.gui.Choices;
 
 public class ChoiceListener implements ActionListener {
-	Choices c;
+	private Choices c;
+	private ListeningType type;
 	
 	public ChoiceListener(Choices choices) {
 		c = choices;
+		type = ListeningType.ROOT;
 	}
 	
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
-		Product item = c.find(arg0.getActionCommand());
-		if(item != null && item.hasOptions()) {
-			c.showOptionsPane(c.find(arg0.getActionCommand()));
+		if(this.type == ListeningType.ROOT) {
+			Product item = c.find(arg0.getActionCommand());
+			if(item != null && item.hasOptions()) {
+				c.showOptionsPane(c.find(arg0.getActionCommand()));
+			} else {
+				
+			}
+		} else if(this.type == ListeningType.OPTIONS) {
+			
 		} else {
 			
 		}
