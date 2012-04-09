@@ -63,4 +63,13 @@ public abstract class Product implements Item {
 		return (this.options.size() == 0) ? false : true;
 	}
 	
+	public Option findOption(String name) {
+		for(Option o : options) {
+			if(o.getSize().toString().equals(name)) {
+				return o;
+			}
+		}
+		return null;
+	}
+	
 }

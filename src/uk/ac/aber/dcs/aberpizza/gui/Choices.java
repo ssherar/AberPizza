@@ -14,10 +14,12 @@ public class Choices extends JPanel {
 	
 	private ArrayList<Product> c;
 	private ChoiceListener l;
+	private Double currentPrice;
 	
 	public Choices() {
 		super(new GridLayout(0,4));
 		l = new ChoiceListener(this);
+		currentPrice = 0.00;
 	}
 	
 	public void init(ArrayList<Product> choices) {
@@ -25,8 +27,15 @@ public class Choices extends JPanel {
 		this.init();
 	}
 	
+	public void init(Option o) {
+		currentPrice += o.getPrice();
+		System.out.println(currentPrice);
+		this.init();
+	}
+	
 	public void init() {
 		this.removeAll();
+		currentPrice = 0.00;
 		for(Product p : c) {
 			JButton tmp = new JButton(p.getName());
 			tmp.addActionListener(l);
@@ -47,9 +56,11 @@ public class Choices extends JPanel {
 	
 	public void showOptionsPane(Product item) {
 		this.removeAll();
+		currentPrice = item.getPrice();
+		
 		for(Option o : item.getOptions()) {
-			JButton tmp = new JButton(""+o.getSize());
-			//tmp.addActionListener(l);
+			JButton tmp = new JButton(this.format(o.getSize().toString()));
+			tmp.addActionListener(l);
 			this.add(tmp);
 		}
 		JButton cancel = new JButton("Cancel");
@@ -58,6 +69,16 @@ public class Choices extends JPanel {
 		
 		this.doLayout();
 		this.repaint();
+	}
+	
+	public void setPrice(Double d) {
+		currentPrice = d;
+		System.out.println(currentPrice);
+		this.init();
+	}
+	
+	private String format(String s) {
+		return (s.substring(0, 1)) + (s.substring(1).toLowerCase());
 	}
 }
 
