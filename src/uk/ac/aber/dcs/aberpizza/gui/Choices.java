@@ -37,6 +37,7 @@ public class Choices extends JPanel{
 	
 	public void init() {
 		this.removeAll();
+		this.setLayout(new GridLayout(0,4));
 		currentPrice = 0.00;
 		for(Product p : c) {
 			JButton tmp = new JButton(p.getName());
@@ -58,6 +59,7 @@ public class Choices extends JPanel{
 	
 	public void showOptionsPane(Product item) {
 		this.removeAll();
+		this.setLayout(new GridLayout(0,2));
 		currentPrice = item.getPrice();
 		
 		for(Option o : item.getOptions()) {
