@@ -35,5 +35,9 @@ public class DataPanel extends JPanel {
 		this.items = items;
 	}
 	
+	public TableDataModel getModel() {
+		return dModel;
+	}
+	
 	
 }

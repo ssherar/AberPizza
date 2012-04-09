@@ -6,6 +6,8 @@ import java.util.Observer;
 
 import javax.swing.*;
 
+import uk.ac.aber.dcs.aberpizza.data.TableDataModel;
+
 public class MainFrame extends JFrame{
 	DataPanel dataPane;
 	ControllerPanel controllerPane;
@@ -35,6 +37,10 @@ public class MainFrame extends JFrame{
 	
 	public Choices getChoices() {
 		return controllerPane.getChoices();
+	}
+	
+	public TableDataModel getModel() {
+		return dataPane.getModel();
 	}
 	
 }
