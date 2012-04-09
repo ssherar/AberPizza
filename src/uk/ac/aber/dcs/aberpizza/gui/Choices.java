@@ -8,9 +8,11 @@ import uk.ac.aber.dcs.aberpizza.data.Product;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.ArrayList;
+import java.util.Observable;
+import java.util.Observer;
 
 
-public class Choices extends JPanel {
+public class Choices extends JPanel{
 	
 	private ArrayList<Product> c;
 	private ChoiceListener l;
@@ -29,7 +31,7 @@ public class Choices extends JPanel {
 	
 	public void init(Option o) {
 		currentPrice += o.getPrice();
-		System.out.println(currentPrice);
+		//dataPane(currentPrice);
 		this.init();
 	}
 	
@@ -80,6 +82,7 @@ public class Choices extends JPanel {
 	private String format(String s) {
 		return (s.substring(0, 1)) + (s.substring(1).toLowerCase());
 	}
+
 }
 
 

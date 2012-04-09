@@ -1,9 +1,12 @@
 package uk.ac.aber.dcs.aberpizza.gui;
 
 import java.awt.*;
+import java.util.Observable;
+import java.util.Observer;
+
 import javax.swing.*;
 
-public class MainFrame extends JFrame {
+public class MainFrame extends JFrame{
 	DataPanel dataPane;
 	ControllerPanel controllerPane;
 	
@@ -33,4 +36,5 @@ public class MainFrame extends JFrame {
 	public Choices getChoices() {
 		return controllerPane.getChoices();
 	}
+	
 }
