@@ -16,7 +16,7 @@ public class ChoiceListener implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		System.out.print(arg0.getActionCommand()+"\t");
-		System.out.println(c.find(arg0.getActionCommand()));
+		System.out.println(c.find(arg0.getActionCommand()).getOptions());
 	}
 
 }

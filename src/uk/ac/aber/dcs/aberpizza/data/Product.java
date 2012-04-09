@@ -6,7 +6,7 @@ public abstract class Product implements Item {
 	private Double price;
 	private String name;
 	private String description;
-	private ArrayList<Option> options;
+	private ArrayList<Option> options = new ArrayList<Option>();
 	
 	
 	public Product(String n, Double p, String d) {
@@ -49,6 +49,14 @@ public abstract class Product implements Item {
 	public void setName(String n) {
 		// TODO Auto-generated method stub
 		name = n;
+	}
+	
+	public void addOption(Sizes s, Double p) {
+		options.add(new Option(s, p));
+	}
+	
+	public ArrayList<Option> getOptions() {
+		return options;
 	}
 	
 }
