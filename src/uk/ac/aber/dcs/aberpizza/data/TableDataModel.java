@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import javax.swing.table.AbstractTableModel;
 
 public class TableDataModel extends AbstractTableModel{
-	private String[] columnNames = {"UID", "Item Name", "Quantity", "Unitary Price", "Total"};
+	private String[] columnNames = {"Item Name", "Quantity", "Unitary Price", "Total"};
 	private ArrayList<Object[]> data = new ArrayList<Object[]>();
 	
 	@Override
@@ -33,13 +33,13 @@ public class TableDataModel extends AbstractTableModel{
 		return false;
 	}
 	
-	public void addRow(int id, String name, int quantity, double price) {
-		data.add(new Object[] {id, name, quantity, price, (price * quantity)});
+	public void addRow(String name, int quantity, double price) {
+		data.add(new Object[] {name, quantity, price, (price * quantity)});
 		this.fireTableRowsInserted(data.size() - 1, 0);
 	}
 	
 	public void addRow(Product p, int quantity) {
-		data.add(new Object[] {0, p.getName(), quantity, p.getPrice(), (quantity * p.getPrice())});
+		data.add(new Object[] {p.getName(), quantity, p.getPrice(), (quantity * p.getPrice())});
 		this.fireTableRowsInserted(data.size() - 1, 0);
 	}
 

@@ -8,7 +8,7 @@ import java.awt.*;
 import java.awt.event.*;
 import java.util.*;
 
-public class Manager {
+public class Manager implements Observer {
 	private MainFrame window;
 	private JTable items;
 	private Choices choicesPanel;
@@ -26,6 +26,13 @@ public class Manager {
 		choices.add(new Beverage("Coke", 1.15, "Bottle of Coke"));
 		choicesPanel.init(choices);
 	}
+
+	@Override
+	public void update(Observable arg0, Object arg1) {
+		// TODO Auto-generated method stub
+		
+	}
+	
 	
 	
 }
