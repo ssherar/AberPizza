@@ -16,6 +16,8 @@ public class DataPanel extends JPanel {
 		super(new BorderLayout());
 		dModel = new TableDataModel();
 		items = new JTable(dModel);
+		dModel.addRow(1, "LOL", 1, 9.99);
+		dModel.addRow(2, "Chicken", 2, 5.99);
 		
 		JScrollPane scroll = new JScrollPane(items);
 		items.setFillsViewportHeight(true);
