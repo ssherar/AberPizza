@@ -46,6 +46,7 @@ public class ChoiceListener implements ActionListener {
 				current = null;
 				c.init(o);
 			}
+			
 		} else {
 			
 		}
