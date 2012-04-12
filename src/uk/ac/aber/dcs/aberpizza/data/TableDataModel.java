@@ -5,6 +5,8 @@ import java.util.ArrayList;
 
 import javax.swing.table.AbstractTableModel;
 
+import uk.ac.aber.dcs.aberpizza.controller.Manager;
+
 public class TableDataModel extends AbstractTableModel{
 	private String[] columnNames = {"Item Name", "Quantity", "Unitary Price", "Total"};
 	private ArrayList<Object[]> data = new ArrayList<Object[]>();
@@ -40,8 +42,73 @@ public class TableDataModel extends AbstractTableModel{
 	}
 	
 	public void addRow(Product p, int quantity) {
-		data.add(new Object[] {p.getName(), quantity, p.getPrice(), (p.getPrice().multiply(new BigDecimal(quantity)))});
-		this.fireTableRowsInserted(data.size() - 1, 0);
+		//check if already have one in?
+		int foundIndex = -1;
+		for(int i = 0; i < data.size(); ++i) {
+			if((String)data.get(i)[0] == p.getName()) {
+				foundIndex = i;
+				break;
+			}
+		}
+
+		if(foundIndex > -1) {
+			Object[] tmp = data.get(foundIndex);
+			tmp[1] = (Integer) tmp[1] + 1;
+			
+			BigDecimal totalPrice = ((BigDecimal)tmp[2]).multiply(new BigDecimal((Integer) tmp[1]));
+			tmp[3] = Manager.round(totalPrice);
+			data.set(foundIndex, tmp);
+			this.fireTableDataChanged();
+		} else {
+			data.add(new Object[] {p.getName(), quantity, Manager.round(p.getPrice()), 
+					Manager.round(p.getPrice().multiply(new BigDecimal(quantity)))
+			});
+			
+			this.fireTableRowsInserted(data.size() - 1, 0);
+		}
 	}
+	
+	public void decrement(Product p) {
+		int foundIndex = -1;
+		for(int i = 0; i < data.size(); ++i) {
+			if((String)data.get(i)[0] == p.getName()) {
+				foundIndex = i;
+				break;
+			}
+		}
+		
+		if(foundIndex > -1) {
+			Object[] tmp = data.get(foundIndex);
+			if((Integer) tmp[1] == 1) {
+				this.remove(foundIndex);
+			} else {
+				tmp[1] = (Integer) tmp[1] - 1;
+				
+				BigDecimal totalPrice = ((BigDecimal)tmp[2]).multiply(new BigDecimal((Integer) tmp[1]));
+				tmp[3] = Manager.round(totalPrice);
+				data.set(foundIndex, tmp);
+				this.fireTableDataChanged();
+			}
+		}
+	}
+	
+	public void remove(int index) {
+		this.data.remove(index);
+		this.fireTableRowsDeleted(index, index);
+	}
+	
+	public void remove(Product p) {
+		int foundIndex = -1;
+		for(int i = 0; i < data.size(); ++i) {
+			if((String)data.get(i)[0] == p.getName()) {
+				foundIndex = i;
+				break;
+			}
+		}
+		if(foundIndex > -1) {
+			this.remove(foundIndex);
+		}
+	}
+	
 
 }

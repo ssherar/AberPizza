@@ -16,7 +16,7 @@ public class ProductModel extends Observable {
 	
 	public ProductModel(Manager m) {
 		manager = m;
-		this.addObserver(m);
+		this.addObserver(manager);
 		runningPrice = new BigDecimal(0.00);
 	}
 	
@@ -41,5 +41,9 @@ public class ProductModel extends Observable {
 	
 	public BigDecimal getRunningPrice() {
 		return runningPrice;
+	}
+	
+	public Product getProduct() {
+		return item;
 	}
 }

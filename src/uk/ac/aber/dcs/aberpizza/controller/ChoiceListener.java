@@ -30,11 +30,9 @@ public class ChoiceListener implements ActionListener {
 			if(item != null && item.hasOptions()) {
 				this.type = ListeningType.OPTIONS;
 				current = item;
-				model.addItem(item);
 				c.showOptionsPane(item);
-			} else {
-				c.setPrice(item.getPrice());
 			}
+			model.addItem(item);
 		} else if(this.type == ListeningType.OPTIONS) {
 			//first check if cancelled.
 			if(arg0.getActionCommand() == "Cancel") {

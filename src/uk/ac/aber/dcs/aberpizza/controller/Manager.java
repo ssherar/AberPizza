@@ -41,17 +41,19 @@ public class Manager implements Observer {
 			BigDecimal currentTotal = total.getValue();
 			currentTotal  = currentTotal.add(p.getRunningPrice());
 			total.setValue(round(currentTotal));
+			items.addRow(p.getProduct(), 1);
 		} else if(s.equals("priceCancelled")) {
 			ProductModel p = (ProductModel) o;
 			BigDecimal currentTotal = total.getValue();
 			currentTotal = currentTotal.subtract(p.getRunningPrice());
 			total.setValue(round(currentTotal));
+			items.decrement(p.getProduct());
 		}
 		
 		
 	}
 	
-	private BigDecimal round(BigDecimal r) {
+	public static BigDecimal round(BigDecimal r) {
 		return r.setScale(2, BigDecimal.ROUND_HALF_EVEN);
 	}
 	
