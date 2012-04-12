@@ -2,6 +2,7 @@ package uk.ac.aber.dcs.aberpizza.gui;
 
 import javax.swing.*;
 import java.awt.*;
+import java.text.DateFormat;
 
 public class Total extends JPanel {
 	JLabel total;
@@ -19,6 +20,7 @@ public class Total extends JPanel {
 		int margin = 10;
 		FontMetrics f= g.getFontMetrics();
 		Dimension d = this.getSize();
+		total.setSize(new Dimension(f.stringWidth(total.getText()), 0));
 		super.paintComponents(g);
 		g.setColor(Color.LIGHT_GRAY);
 		g.fillRoundRect(margin, margin, d.width - margin * 2, d.height - margin * 2, 5, 5);
@@ -37,7 +39,8 @@ public class Total extends JPanel {
 	}
 	
 	public void setValue(double v) {
-		String tmp = total.getText().substring(0, total.getText().lastIndexOf("£"));
+		String tmp = total.getText().substring(0, total.getText().lastIndexOf("£") + 1);
+		DoubleFormat f = new DoubleFormat("#.##");
 		total.setText(tmp + v);
 	}
 }
