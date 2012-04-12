@@ -103,6 +103,16 @@ public class TableDataModel extends AbstractTableModel{
 		}
 	}
 	
+	public BigDecimal calcTotal() {
+		BigDecimal total = new BigDecimal(0.00);
+		for(Object[] p : data) {
+			total = total.add(
+					((BigDecimal)p[2]).multiply(new BigDecimal((Integer) p[1]))
+			);
+		}
+		return total;
+	}
+	
 	private int find(Product p) {
 		int foundIndex = -1;
 		for(int i = 0; i < data.size(); ++i) {

@@ -6,11 +6,12 @@ import java.math.BigDecimal;
 import java.text.DateFormat;
 
 public class Total extends JPanel {
-	JLabel total;
+	private String totalString = "Total: £%s";
+	private JLabel total;
 	public Total() {
 		super(null);
 		setPreferredSize(new Dimension(0, 150));
-		total = new JLabel("Total: £0.00");
+		total = new JLabel(String.format(totalString, new BigDecimal(0.00)));
 		total.setPreferredSize(this.getPreferredSize());
 		total.setHorizontalTextPosition(JLabel.CENTER);
 		this.add(total);
@@ -40,6 +41,6 @@ public class Total extends JPanel {
 	}
 	
 	public void setValue(BigDecimal v) {
-		total.setText("Total: £" + v);
+		total.setText(String.format(totalString, v));
 	}
 }

@@ -38,25 +38,17 @@ public class Manager implements Observer {
 		
 		if(s.equals("priceIncreased")) {
 			ProductModel p = (ProductModel) o;
-			BigDecimal currentTotal = total.getValue();
-			currentTotal  = currentTotal.add(p.getRunningPrice());
-			total.setValue(round(currentTotal));
 			items.addRow(p.getProduct(), 1, true);
 		} else if(s.equals("optionAdded")) {
 			ProductModel p = (ProductModel) o;
-			BigDecimal currentTotal = total.getValue();
-			currentTotal  = currentTotal.add(p.getRunningPrice());
-			total.setValue(round(currentTotal));
 			items.addOption(p.getOption(), p.getProduct());
 		} else if(s.equals("priceCancelled")) {
 			ProductModel p = (ProductModel) o;
-			BigDecimal currentTotal = total.getValue();
-			currentTotal = currentTotal.subtract(p.getRunningPrice());
-			total.setValue(round(currentTotal));
 			items.decrement(p.getProduct());
 		}
 		
-		
+		BigDecimal totalValue = items.calcTotal();
+		total.setValue(totalValue);
 	}
 	
 	public static BigDecimal round(BigDecimal r) {
