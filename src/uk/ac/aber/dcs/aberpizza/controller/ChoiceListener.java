@@ -39,6 +39,7 @@ public class ChoiceListener implements ActionListener {
 			//first check if cancelled.
 			if(arg0.getActionCommand() == "Cancel") {
 				this.type = ListeningType.ROOT;
+				model.cancelItem();
 				current = null;
 				c.init();
 				return;

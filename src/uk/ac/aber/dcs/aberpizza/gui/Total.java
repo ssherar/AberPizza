@@ -2,6 +2,7 @@ package uk.ac.aber.dcs.aberpizza.gui;
 
 import javax.swing.*;
 import java.awt.*;
+import java.math.BigDecimal;
 import java.text.DateFormat;
 
 public class Total extends JPanel {
@@ -34,13 +35,11 @@ public class Total extends JPanel {
 		total.setBounds(r);
 	}
 	
-	public double getValue() {
-		return Double.parseDouble(total.getText().substring(total.getText().lastIndexOf("£") + 1));
+	public BigDecimal getValue() {
+		return new BigDecimal(total.getText().substring(total.getText().lastIndexOf("£") + 1));
 	}
 	
-	public void setValue(double v) {
-		String tmp = total.getText().substring(0, total.getText().lastIndexOf("£") + 1);
-		DoubleFormat f = new DoubleFormat("#.##");
-		total.setText(tmp + v);
+	public void setValue(BigDecimal v) {
+		total.setText("Total: £" + v);
 	}
 }

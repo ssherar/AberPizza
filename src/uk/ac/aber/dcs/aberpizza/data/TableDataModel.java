@@ -1,5 +1,6 @@
 package uk.ac.aber.dcs.aberpizza.data;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 
 import javax.swing.table.AbstractTableModel;
@@ -39,7 +40,7 @@ public class TableDataModel extends AbstractTableModel{
 	}
 	
 	public void addRow(Product p, int quantity) {
-		data.add(new Object[] {p.getName(), quantity, p.getPrice(), (quantity * p.getPrice())});
+		data.add(new Object[] {p.getName(), quantity, p.getPrice(), (p.getPrice().multiply(new BigDecimal(quantity)))});
 		this.fireTableRowsInserted(data.size() - 1, 0);
 	}
 

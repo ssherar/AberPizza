@@ -1,5 +1,6 @@
 package uk.ac.aber.dcs.aberpizza.data;
 
+import java.math.BigDecimal;
 import java.util.Observable;
 import uk.ac.aber.dcs.aberpizza.data.*;
 import uk.ac.aber.dcs.aberpizza.controller.*;
@@ -11,29 +12,34 @@ public class ProductModel extends Observable {
 	private Manager manager;
 	private Option option;
 	private Product item;
-	private Double runningPrice;
+	private BigDecimal runningPrice;
 	
 	public ProductModel(Manager m) {
 		manager = m;
 		this.addObserver(m);
-		runningPrice = 0.00;
+		runningPrice = new BigDecimal(0.00);
 	}
 	
 	public void addItem(Product p) {
 		item = p;
 		runningPrice = item.getPrice();
 		this.setChanged();
-		this.notifyObservers("priceChanged");
+		this.notifyObservers("priceIncreased");
 	}
 	
 	public void addOption(Option o) {
 		option = o;
-		runningPrice += option.getPrice();
+		runningPrice = runningPrice.add(option.getPrice());
 		this.setChanged();
-		this.notifyObservers("priceChanged");
+		this.notifyObservers("priceIncreased");
 	}
 	
-	public Double getRunningPrice() {
+	public void cancelItem() {
+		this.setChanged();
+		this.notifyObservers("priceCancelled");
+	}
+	
+	public BigDecimal getRunningPrice() {
 		return runningPrice;
 	}
 }

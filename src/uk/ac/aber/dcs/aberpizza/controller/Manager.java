@@ -6,6 +6,7 @@ import uk.ac.aber.dcs.aberpizza.gui.*;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.math.BigDecimal;
 import java.util.*;
 
 public class Manager implements Observer {
@@ -35,11 +36,23 @@ public class Manager implements Observer {
 			return;
 		}
 		
-		ProductModel p = (ProductModel) o;
-		double currentTotal = total.getValue();
-		currentTotal += p.getRunningPrice();
-		total.setValue(currentTotal);
+		if(s.equals("priceIncreased")) {
+			ProductModel p = (ProductModel) o;
+			BigDecimal currentTotal = total.getValue();
+			currentTotal  = currentTotal.add(p.getRunningPrice());
+			total.setValue(round(currentTotal));
+		} else if(s.equals("priceCancelled")) {
+			ProductModel p = (ProductModel) o;
+			BigDecimal currentTotal = total.getValue();
+			currentTotal = currentTotal.subtract(p.getRunningPrice());
+			total.setValue(round(currentTotal));
+		}
 		
+		
+	}
+	
+	private BigDecimal round(BigDecimal r) {
+		return r.setScale(2, BigDecimal.ROUND_HALF_EVEN);
 	}
 	
 }

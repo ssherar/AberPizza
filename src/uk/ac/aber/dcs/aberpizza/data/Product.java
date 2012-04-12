@@ -1,22 +1,23 @@
 package uk.ac.aber.dcs.aberpizza.data;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 
 public abstract class Product implements Item {
-	private Double price;
+	private BigDecimal price;
 	private String name;
 	private String description;
 	private ArrayList<Option> options = new ArrayList<Option>();
 	
 	
 	public Product(String n, Double p, String d) {
-		price = p;
+		price = new BigDecimal(p);
 		name = n;
 		description = d;
 	}
 	
 	@Override
-	public Double getPrice() {
+	public BigDecimal getPrice() {
 		// TODO Auto-generated method stub
 		return price;
 	}
@@ -24,7 +25,7 @@ public abstract class Product implements Item {
 	@Override
 	public void setPrice(Double p) {
 		// TODO Auto-generated method stub
-		price = p;
+		price =  new BigDecimal(p);
 	}
 
 	@Override

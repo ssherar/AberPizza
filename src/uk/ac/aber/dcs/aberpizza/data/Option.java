@@ -1,14 +1,16 @@
 package uk.ac.aber.dcs.aberpizza.data;
 
+import java.math.BigDecimal;
+
 
 public class Option {
 	private Sizes size;
-	private Double price;
+	private BigDecimal price;
 	
 	
 	public Option(Sizes s, Double p) {
 		this.size = s;
-		this.price = p;
+		this.price = new BigDecimal(p);
 	}
 	
 	public Sizes getSize() {
@@ -19,11 +21,11 @@ public class Option {
 		this.size = size;
 	}
 	
-	public Double getPrice() {
+	public BigDecimal getPrice() {
 		return price;
 	}
 	
-	public void setPrice(Double price) {
+	public void setPrice(BigDecimal price) {
 		this.price = price;
 	}
 	

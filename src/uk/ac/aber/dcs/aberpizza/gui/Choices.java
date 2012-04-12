@@ -9,6 +9,7 @@ import uk.ac.aber.dcs.aberpizza.data.ProductModel;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
@@ -18,7 +19,7 @@ public class Choices extends JPanel{
 	
 	private ArrayList<Product> c;
 	private ChoiceListener l;
-	private Double currentPrice;
+	private BigDecimal currentPrice;
 	private Manager manager;
 	private ProductModel p;
 	
@@ -27,7 +28,7 @@ public class Choices extends JPanel{
 		manager = m;
 		p = new ProductModel(m);
 		l = new ChoiceListener(this, p);
-		currentPrice = 0.00;
+		currentPrice = new BigDecimal(0.00);
 	}
 	
 	public void init(ArrayList<Product> choices) {
@@ -36,7 +37,6 @@ public class Choices extends JPanel{
 	}
 	
 	public void init(Option o) {
-		currentPrice += o.getPrice();
 		//dataPane(currentPrice);
 		this.init();
 	}
@@ -44,7 +44,7 @@ public class Choices extends JPanel{
 	public void init() {
 		this.removeAll();
 		this.setLayout(new GridLayout(0,4));
-		currentPrice = 0.00;
+		currentPrice  = new BigDecimal(0.00);
 		for(Product p : c) {
 			JButton tmp = new JButton(p.getName());
 			tmp.addActionListener(l);
@@ -66,7 +66,6 @@ public class Choices extends JPanel{
 	public void showOptionsPane(Product item) {
 		this.removeAll();
 		this.setLayout(new GridLayout(0,2));
-		currentPrice = item.getPrice();
 		
 		for(Option o : item.getOptions()) {
 			JButton tmp = new JButton(this.format(o.getSize().toString()));
@@ -81,9 +80,8 @@ public class Choices extends JPanel{
 		this.repaint();
 	}
 	
-	public void setPrice(Double d) {
-		currentPrice = d;
-		System.out.println(currentPrice);
+	public void setPrice(BigDecimal bigDecimal) {
+		currentPrice = bigDecimal;
 		this.init();
 	}
 	
