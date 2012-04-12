@@ -52,5 +52,9 @@ public class MainFrame extends JFrame{
 	public TableDataModel getModel() {
 		return dataPane.getModel();
 	}
+
+	public Total getTotal() {
+		return dataPane.getTotal();
+	}
 	
 }

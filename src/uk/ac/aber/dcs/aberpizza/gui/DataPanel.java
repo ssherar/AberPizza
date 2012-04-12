@@ -13,6 +13,7 @@ public class DataPanel extends JPanel {
 	private JTable items;
 	private TableDataModel dModel;
 	private Manager manager;
+	private Total bottom;
 	
 	public DataPanel(Manager m) {
 		super(new BorderLayout());
@@ -26,7 +27,7 @@ public class DataPanel extends JPanel {
 		
 		this.add(scroll, BorderLayout.CENTER);
 		
-		Total bottom = new Total();
+		bottom = new Total();
 		this.add(bottom, BorderLayout.SOUTH);
 		
 	}
@@ -41,6 +42,10 @@ public class DataPanel extends JPanel {
 	
 	public TableDataModel getModel() {
 		return dModel;
+	}
+	
+	public Total getTotal() {
+		return bottom;
 	}
 	
 	

@@ -31,4 +31,13 @@ public class Total extends JPanel {
 		Rectangle r = new Rectangle(width, d.height / 8, 100, 100);
 		total.setBounds(r);
 	}
+	
+	public double getValue() {
+		return Double.parseDouble(total.getText().substring(total.getText().lastIndexOf("£") + 1));
+	}
+	
+	public void setValue(double v) {
+		String tmp = total.getText().substring(0, total.getText().lastIndexOf("£"));
+		total.setText(tmp + v);
+	}
 }

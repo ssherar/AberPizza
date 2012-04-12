@@ -12,11 +12,13 @@ public class Manager implements Observer {
 	private MainFrame window;
 	private TableDataModel items;
 	private Choices choicesPanel;
+	private Total total;
 	
 	public Manager() {
 		window = new MainFrame(this);
-		//items = window.getItems();
+		items = window.getModel();
 		choicesPanel = window.getChoices();
+		total = window.getTotal();
 		
 		ArrayList<Product> choices = new ArrayList<Product>();
 		choices.add(new Pizza("Margherita", 9.99, "12\" Pizza"));
@@ -28,11 +30,16 @@ public class Manager implements Observer {
 	}
 
 	@Override
-	public void update(Observable arg0, Object arg1) {
-		// TODO Auto-generated method stub
+	public void update(Observable o, Object s) {
+		if(!(s instanceof String)) {
+			return;
+		}
+		
+		ProductModel p = (ProductModel) o;
+		double currentTotal = total.getValue();
+		currentTotal += p.getRunningPrice();
+		total.setValue(currentTotal);
 		
 	}
-	
-	
 	
 }
