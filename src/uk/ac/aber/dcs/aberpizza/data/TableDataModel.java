@@ -25,6 +25,8 @@ public class TableDataModel extends AbstractTableModel{
 
 	@Override
 	public Object getValueAt(int row, int col) {
+		if(col == 4) return null;
+		
 		return this.data.get(row)[col];
 	}
 	
@@ -41,15 +43,8 @@ public class TableDataModel extends AbstractTableModel{
 		this.fireTableRowsInserted(data.size() - 1, 0);
 	}
 	
-	public void addRow(Product p, int quantity) {
-		//check if already have one in?
-		int foundIndex = -1;
-		for(int i = 0; i < data.size(); ++i) {
-			if((String)data.get(i)[0] == p.getName()) {
-				foundIndex = i;
-				break;
-			}
-		}
+	public void addRow(Product p, int quantity, boolean cancellable) {
+		int foundIndex = this.find(p);
 
 		if(foundIndex > -1) {
 			Object[] tmp = data.get(foundIndex);
@@ -61,7 +56,7 @@ public class TableDataModel extends AbstractTableModel{
 			this.fireTableDataChanged();
 		} else {
 			data.add(new Object[] {p.getName(), quantity, Manager.round(p.getPrice()), 
-					Manager.round(p.getPrice().multiply(new BigDecimal(quantity)))
+					Manager.round(p.getPrice().multiply(new BigDecimal(quantity))), cancellable
 			});
 			
 			this.fireTableRowsInserted(data.size() - 1, 0);
@@ -69,13 +64,7 @@ public class TableDataModel extends AbstractTableModel{
 	}
 	
 	public void decrement(Product p) {
-		int foundIndex = -1;
-		for(int i = 0; i < data.size(); ++i) {
-			if((String)data.get(i)[0] == p.getName()) {
-				foundIndex = i;
-				break;
-			}
-		}
+		int foundIndex = this.find(p);
 		
 		if(foundIndex > -1) {
 			Object[] tmp = data.get(foundIndex);
@@ -98,6 +87,23 @@ public class TableDataModel extends AbstractTableModel{
 	}
 	
 	public void remove(Product p) {
+		int foundIndex = this.find(p);
+		if(foundIndex > -1) {
+			this.remove(foundIndex);
+		}
+	}
+	
+	public void addOption(Option o, Product p) {
+		int i = this.find(p);
+		if(i > -1) {
+			this.data.add(i + 1, new Object[] {
+					"\t\t\t\t"+o.getSize(), 1, Manager.round(o.getPrice()), Manager.round(o.getPrice().multiply(new BigDecimal(1))), false
+			});
+			this.fireTableRowsInserted(i + 1, 0);
+		}
+	}
+	
+	private int find(Product p) {
 		int foundIndex = -1;
 		for(int i = 0; i < data.size(); ++i) {
 			if((String)data.get(i)[0] == p.getName()) {
@@ -105,9 +111,7 @@ public class TableDataModel extends AbstractTableModel{
 				break;
 			}
 		}
-		if(foundIndex > -1) {
-			this.remove(foundIndex);
-		}
+		return foundIndex;
 	}
 	
 

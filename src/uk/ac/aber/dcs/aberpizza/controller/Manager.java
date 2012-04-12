@@ -41,7 +41,13 @@ public class Manager implements Observer {
 			BigDecimal currentTotal = total.getValue();
 			currentTotal  = currentTotal.add(p.getRunningPrice());
 			total.setValue(round(currentTotal));
-			items.addRow(p.getProduct(), 1);
+			items.addRow(p.getProduct(), 1, true);
+		} else if(s.equals("optionAdded")) {
+			ProductModel p = (ProductModel) o;
+			BigDecimal currentTotal = total.getValue();
+			currentTotal  = currentTotal.add(p.getRunningPrice());
+			total.setValue(round(currentTotal));
+			items.addOption(p.getOption(), p.getProduct());
 		} else if(s.equals("priceCancelled")) {
 			ProductModel p = (ProductModel) o;
 			BigDecimal currentTotal = total.getValue();

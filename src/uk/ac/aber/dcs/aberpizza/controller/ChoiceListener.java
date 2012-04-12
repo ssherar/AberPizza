@@ -43,10 +43,11 @@ public class ChoiceListener implements ActionListener {
 				return;
 			}
 			
-			Option o = current.findOption(arg0.getActionCommand().toUpperCase());
+			Option o = current.findOption(arg0.getActionCommand());
 			if(o != null) {
 				this.type = ListeningType.ROOT;
 				current = null;
+				model.addOption(o);
 				c.init(o);
 			}
 			

@@ -68,7 +68,7 @@ public class Choices extends JPanel{
 		this.setLayout(new GridLayout(0,2));
 		
 		for(Option o : item.getOptions()) {
-			JButton tmp = new JButton(this.format(o.getSize().toString()));
+			JButton tmp = new JButton(o.getSize().toString());
 			tmp.addActionListener(l);
 			this.add(tmp);
 		}

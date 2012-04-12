@@ -31,7 +31,7 @@ public class ProductModel extends Observable {
 		option = o;
 		runningPrice = runningPrice.add(option.getPrice());
 		this.setChanged();
-		this.notifyObservers("priceIncreased");
+		this.notifyObservers("optionAdded");
 	}
 	
 	public void cancelItem() {
@@ -45,5 +45,9 @@ public class ProductModel extends Observable {
 	
 	public Product getProduct() {
 		return item;
+	}
+	
+	public Option getOption() {
+		return option;
 	}
 }
