@@ -5,17 +5,21 @@ import java.math.BigDecimal;
 
 import javax.swing.*;
 
+import uk.ac.aber.dcs.aberpizza.controller.Manager;
 import uk.ac.aber.dcs.aberpizza.data.TableDataModel;
 
 public class DataPanel extends JPanel {
 
 	private JTable items;
 	private TableDataModel dModel;
+	private Manager manager;
 	
-	public DataPanel() {
+	public DataPanel(Manager m) {
 		super(new BorderLayout());
 		dModel = new TableDataModel();
 		items = new JTable(dModel);
+		
+		manager = m;
 		
 		JScrollPane scroll = new JScrollPane(items);
 		items.setFillsViewportHeight(true);

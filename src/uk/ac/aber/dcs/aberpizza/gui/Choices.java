@@ -2,8 +2,10 @@ package uk.ac.aber.dcs.aberpizza.gui;
 import javax.swing.*;
 
 import uk.ac.aber.dcs.aberpizza.controller.ChoiceListener;
+import uk.ac.aber.dcs.aberpizza.controller.Manager;
 import uk.ac.aber.dcs.aberpizza.data.Option;
 import uk.ac.aber.dcs.aberpizza.data.Product;
+import uk.ac.aber.dcs.aberpizza.data.ProductModel;
 
 import java.awt.*;
 import java.awt.event.*;
@@ -17,10 +19,14 @@ public class Choices extends JPanel{
 	private ArrayList<Product> c;
 	private ChoiceListener l;
 	private Double currentPrice;
+	private Manager manager;
+	private ProductModel p;
 	
-	public Choices() {
+	public Choices(Manager m) {
 		super(new GridLayout(0,4));
-		l = new ChoiceListener(this);
+		manager = m;
+		p = new ProductModel(m);
+		l = new ChoiceListener(this, p);
 		currentPrice = 0.00;
 	}
 	
@@ -84,6 +90,7 @@ public class Choices extends JPanel{
 	private String format(String s) {
 		return (s.substring(0, 1)) + (s.substring(1).toLowerCase());
 	}
+	
 
 }
 

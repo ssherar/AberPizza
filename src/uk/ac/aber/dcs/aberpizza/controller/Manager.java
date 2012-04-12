@@ -10,12 +10,12 @@ import java.util.*;
 
 public class Manager implements Observer {
 	private MainFrame window;
-	private JTable items;
+	private TableDataModel items;
 	private Choices choicesPanel;
 	
 	public Manager() {
-		window = new MainFrame();
-		items = window.getItems();
+		window = new MainFrame(this);
+		//items = window.getItems();
 		choicesPanel = window.getChoices();
 		
 		ArrayList<Product> choices = new ArrayList<Product>();
@@ -30,7 +30,7 @@ public class Manager implements Observer {
 	@Override
 	public void update(Observable arg0, Object arg1) {
 		// TODO Auto-generated method stub
-		System.out.println("Hello World!");
+		
 	}
 	
 	

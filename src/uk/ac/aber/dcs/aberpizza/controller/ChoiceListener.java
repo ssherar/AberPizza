@@ -7,17 +7,20 @@ import java.util.Observable;
 
 import uk.ac.aber.dcs.aberpizza.data.Option;
 import uk.ac.aber.dcs.aberpizza.data.Product;
+import uk.ac.aber.dcs.aberpizza.data.ProductModel;
 import uk.ac.aber.dcs.aberpizza.gui.Choices;
 
 public class ChoiceListener implements ActionListener {
 	private Choices c;
+	private ProductModel model;
 	private ListeningType type;
 	private Product current;
 	
-	public ChoiceListener(Choices choices) {
+	public ChoiceListener(Choices choices, ProductModel p) {
 		c = choices;
 		type = ListeningType.ROOT;
 		current = null;
+		model = p;
 	}
 	
 	@Override
@@ -27,6 +30,7 @@ public class ChoiceListener implements ActionListener {
 			if(item != null && item.hasOptions()) {
 				this.type = ListeningType.OPTIONS;
 				current = item;
+				model.addItem(item);
 				c.showOptionsPane(item);
 			} else {
 				c.setPrice(item.getPrice());
@@ -46,6 +50,7 @@ public class ChoiceListener implements ActionListener {
 				current = null;
 				c.init(o);
 			}
+			
 			
 		} else {
 			
