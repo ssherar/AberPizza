@@ -27,6 +27,9 @@ public class Manager implements Observer {
 		choices.add(new Pizza("Texas BBQ", 9.99, "12\" Pizza"));
 		choices.add(new Pizza("Chicken", 9.99, "12\" Pizza"));
 		choices.add(new Beverage("Coke", 1.15, "Bottle of Coke"));
+		XMLParser parser = new XMLParser();
+		parser.save(choices);
+		parser.load();
 		choicesPanel.init(choices);
 	}
 

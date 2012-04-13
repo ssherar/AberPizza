@@ -6,7 +6,7 @@ import java.math.BigDecimal;
 import java.text.DateFormat;
 
 public class Total extends JPanel {
-	private String totalString = "Total: £%s";
+	private final String totalString = "Total: £%s";
 	private JLabel total;
 	public Total() {
 		super(null);
