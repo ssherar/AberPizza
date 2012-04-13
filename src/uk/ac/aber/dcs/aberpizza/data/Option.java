@@ -2,17 +2,24 @@ package uk.ac.aber.dcs.aberpizza.data;
 
 import java.math.BigDecimal;
 
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlRootElement;
 
+@XmlRootElement
 public class Option {
 	private Sizes size;
 	private BigDecimal price;
 	
+	public Option() {
+		
+	}
 	
 	public Option(Sizes s, Double p) {
 		this.size = s;
 		this.price = new BigDecimal(p);
 	}
 	
+	@XmlAttribute
 	public Sizes getSize() {
 		return size;
 	}
@@ -21,6 +28,7 @@ public class Option {
 		this.size = size;
 	}
 	
+	@XmlAttribute
 	public BigDecimal getPrice() {
 		return price;
 	}

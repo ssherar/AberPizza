@@ -3,12 +3,24 @@ package uk.ac.aber.dcs.aberpizza.data;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlElementWrapper;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlType;
+
+@XmlRootElement
+@XmlType(propOrder = { "name", "description", "price", "options" })
 public abstract class Product implements Item {
 	private BigDecimal price;
 	private String name;
 	private String description;
+	@XmlElementWrapper
+	@XmlElement(name="option")
 	private ArrayList<Option> options = new ArrayList<Option>();
 	
+	public Product() {
+		
+	}
 	
 	public Product(String n, Double p, String d) {
 		price = new BigDecimal(p);
@@ -16,39 +28,36 @@ public abstract class Product implements Item {
 		description = d;
 	}
 	
+	@XmlElement
 	@Override
 	public BigDecimal getPrice() {
-		// TODO Auto-generated method stub
 		return price;
 	}
 
 	@Override
 	public void setPrice(Double p) {
-		// TODO Auto-generated method stub
 		price =  new BigDecimal(p);
 	}
 
 	@Override
 	public String getDescription() {
-		// TODO Auto-generated method stub
 		return description;
 	}
-
+	
+	@XmlElement
 	@Override
 	public void setDescription(String d) {
-		// TODO Auto-generated method stub
 		description = d;
 	}
 
 	@Override
 	public String getName() {
-		// TODO Auto-generated method stub
 		return name;
 	}
-
+	
+	@XmlElement
 	@Override
 	public void setName(String n) {
-		// TODO Auto-generated method stub
 		name = n;
 	}
 	
