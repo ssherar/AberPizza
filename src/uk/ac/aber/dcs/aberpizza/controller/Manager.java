@@ -29,7 +29,7 @@ public class Manager implements Observer {
 		choices.add(new Beverage("Coke", 1.15, "Bottle of Coke"));
 		XMLParser parser = new XMLParser();
 		parser.save(choices);
-		//parser.load();
+		ArrayList<Product> p =  parser.load("new_products.xml").getProducts();
 		choicesPanel.init(choices);
 	}
 

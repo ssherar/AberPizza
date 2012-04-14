@@ -29,17 +29,23 @@ public class XMLParser {
 			jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
 			
 			jaxbMarshaller.marshal(pl, System.out);
-
-			//Unmarshaller unMarshaller = jaxbContext.createUnmarshaller();
-			//ProductList ret = (ProductList)unMarshaller.unmarshal(file);
-			System.out.println("\n");
+			jaxbMarshaller.marshal(pl, new File("new_products.xml"));
 		} catch (JAXBException e) {
 			e.printStackTrace();
 		}
 	}
 	
-	public void load() {
-		
+	public ProductList load(String fileName) {
+		File file = new File(fileName);
+		ProductList ret = null;
+		try {
+			JAXBContext jaxbContext = JAXBContext.newInstance(ProductList.class);
+			Unmarshaller unMarshaller = jaxbContext.createUnmarshaller();
+			ret = (ProductList)unMarshaller.unmarshal(file);
+		} catch(JAXBException e) {
+			e.printStackTrace();
+		}
+		return ret;
 	}
 	
 }

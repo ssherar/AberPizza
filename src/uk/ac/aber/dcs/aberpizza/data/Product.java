@@ -29,12 +29,12 @@ public abstract class Product implements Item {
 	}
 	
 	@XmlElement
-	@Override
+	//@Override
 	public BigDecimal getPrice() {
 		return price;
 	}
 
-	@Override
+	//@Override
 	public void setPrice(Double p) {
 		price =  new BigDecimal(p);
 	}
@@ -45,18 +45,18 @@ public abstract class Product implements Item {
 	}
 	
 	@XmlElement
-	@Override
+	//@Override
 	public void setDescription(String d) {
 		description = d;
 	}
 
-	@Override
+	//@Override
 	public String getName() {
 		return name;
 	}
 	
 	@XmlElement
-	@Override
+	//@Override
 	public void setName(String n) {
 		name = n;
 	}

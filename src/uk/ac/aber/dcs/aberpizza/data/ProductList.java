@@ -6,7 +6,10 @@ import javax.xml.bind.annotation.*;
 
 @XmlRootElement
 public class ProductList {
-	@XmlElement(name="product")
+	@XmlElements({
+		@XmlElement(name="pizza", type=Pizza.class),
+		@XmlElement(name="drink", type=Beverage.class)
+	})
 	private ArrayList<Product> product;
 	
 	public ProductList() {

@@ -10,5 +10,9 @@ public class Pizza extends Product {
 		addOption(Sizes.LARGE, 5.00);
 	}
 	
+	public Pizza() {
+		
+	}
+	
 
 }
