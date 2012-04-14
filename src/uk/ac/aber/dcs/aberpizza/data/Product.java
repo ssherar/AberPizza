@@ -11,12 +11,12 @@ import javax.xml.bind.annotation.XmlType;
 @XmlRootElement
 @XmlType(propOrder = { "name", "description", "price", "options" })
 public abstract class Product implements Item {
-	private BigDecimal price;
-	private String name;
-	private String description;
+	protected BigDecimal price;
+	protected String name;
+	protected String description;
 	@XmlElementWrapper
 	@XmlElement(name="option")
-	private ArrayList<Option> options = new ArrayList<Option>();
+	protected ArrayList<Option> options = new ArrayList<Option>();
 	
 	public Product() {
 		
@@ -29,12 +29,12 @@ public abstract class Product implements Item {
 	}
 	
 	@XmlElement
-	//@Override
+	@Override
 	public BigDecimal getPrice() {
 		return price;
 	}
 
-	//@Override
+	@Override
 	public void setPrice(Double p) {
 		price =  new BigDecimal(p);
 	}
@@ -45,18 +45,18 @@ public abstract class Product implements Item {
 	}
 	
 	@XmlElement
-	//@Override
+	@Override
 	public void setDescription(String d) {
 		description = d;
 	}
 
-	//@Override
+	@Override
 	public String getName() {
 		return name;
 	}
 	
 	@XmlElement
-	//@Override
+	@Override
 	public void setName(String n) {
 		name = n;
 	}
@@ -81,5 +81,7 @@ public abstract class Product implements Item {
 		}
 		return null;
 	}
+	
+	public abstract String getType();
 	
 }

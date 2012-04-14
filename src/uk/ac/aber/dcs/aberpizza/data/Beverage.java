@@ -10,4 +10,9 @@ public class Beverage extends Product{
 		
 	}
 
+	@Override
+	public String getType() {
+		return Beverage.class.toString();
+	}
+
 }

@@ -13,6 +13,11 @@ public class Pizza extends Product {
 	public Pizza() {
 		
 	}
+
+	@Override
+	public String getType() {
+		return Pizza.class.toString();
+	}
 	
 
 }
