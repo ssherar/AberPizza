@@ -56,7 +56,7 @@ public class TableDataModel extends AbstractTableModel{
 			this.fireTableDataChanged();
 		} else {
 			data.add(new Object[] {p.getName(), quantity, Manager.round(p.getPrice()), 
-					Manager.round(p.getPrice().multiply(new BigDecimal(quantity))), cancellable
+					Manager.round(p.getPrice().multiply(new BigDecimal(quantity))), cancellable, ""
 			});
 			
 			this.fireTableRowsInserted(data.size() - 1, 0);
@@ -96,10 +96,21 @@ public class TableDataModel extends AbstractTableModel{
 	public void addOption(Option o, Product p) {
 		int i = this.find(p);
 		if(i > -1) {
-			this.data.add(i + 1, new Object[] {
-					"\t\t\t\t"+o.getSize(), 1, Manager.round(o.getPrice()), Manager.round(o.getPrice().multiply(new BigDecimal(1))), false
-			});
-			this.fireTableRowsInserted(i + 1, 0);
+			int j = find(o, i);
+			if(j > -1) {
+				Object[] tmp = data.get(j);
+				tmp[1] = (Integer) tmp[1] + 1;
+				
+				BigDecimal totalPrice = ((BigDecimal)tmp[2]).multiply(new BigDecimal((Integer) tmp[1]));
+				tmp[3] = Manager.round(totalPrice);
+				data.set(j, tmp);
+				this.fireTableDataChanged();
+			} else {
+				this.data.add(i + 1, new Object[] {
+						o.getSize(), 1, Manager.round(o.getPrice()), Manager.round(o.getPrice().multiply(new BigDecimal(1))), false, p.getName()
+				});
+				this.fireTableRowsInserted(i + 1, 0);
+			}
 		}
 	}
 	
@@ -116,11 +127,23 @@ public class TableDataModel extends AbstractTableModel{
 	private int find(Product p) {
 		int foundIndex = -1;
 		for(int i = 0; i < data.size(); ++i) {
-			if((String)data.get(i)[0] == p.getName()) {
+			if(data.get(i)[0] == p.getName()) {
 				foundIndex = i;
 				break;
 			}
 		}
+		return foundIndex;
+	}
+	
+	private int find(Option o, int pIndex) {
+		int foundIndex = -1;
+		for(int i = 0; i < data.size(); i++) {
+			if(((String)data.get(i)[5] == (String)data.get(pIndex)[0]) && (o.getSize() == data.get(i)[0])) {
+				foundIndex = i;
+				break;
+			}
+		}
+		
 		return foundIndex;
 	}
 	
