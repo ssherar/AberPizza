@@ -8,7 +8,8 @@ import javax.xml.bind.annotation.*;
 public class ProductList {
 	@XmlElements({
 		@XmlElement(name="pizza", type=Pizza.class),
-		@XmlElement(name="drink", type=Beverage.class)
+		@XmlElement(name="drink", type=Beverage.class),
+		@XmlElement(name="side", type=Sides.class)
 	})
 	private ArrayList<Product> product;
 	
@@ -24,9 +25,4 @@ public class ProductList {
 		return product;
 	}
 	
-	public void echoTabs(int i) {
-		for(int j = 0; j < i; j++) {
-			System.out.print("\t");
-		}
-	}
 }
