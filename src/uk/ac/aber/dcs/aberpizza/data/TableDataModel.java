@@ -25,8 +25,10 @@ public class TableDataModel extends AbstractTableModel{
 
 	@Override
 	public Object getValueAt(int row, int col) {
-		if(col == 4) return null;
-		
+		if(col > 4) return null;
+		if((col == 0) && (this.data.get(row)[5] != "")) {
+			return String.format("\t\t\t\t%s", this.data.get(row)[col]);
+		}
 		return this.data.get(row)[col];
 	}
 	

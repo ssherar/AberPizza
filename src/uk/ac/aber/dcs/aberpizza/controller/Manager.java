@@ -21,16 +21,25 @@ public class Manager implements Observer {
 		choicesPanel = window.getChoices();
 		total = window.getTotal();
 		
-		ArrayList<Product> choices = new ArrayList<Product>();
-		choices.add(new Pizza("Margherita", 9.99, "12\" Pizza"));
-		choices.add(new Pizza("Meatfeast", 9.99, "12\" Pizza"));
-		choices.add(new Pizza("Texas BBQ", 9.99, "12\" Pizza"));
-		choices.add(new Pizza("Chicken", 9.99, "12\" Pizza"));
-		choices.add(new Beverage("Coke", 1.15, "Bottle of Coke"));
+		/*ArrayList<Product> choices = new ArrayList<Product>();
+		choices.add(new Pizza("Margherita", 7.99, "Cheese and Tomato Pizza"));
+		choices.add(new Pizza("Meatfeast", 9.99, "Chicken, Sausage, Pepperoni and Sausage"));
+		choices.add(new Pizza("Texas BBQ", 9.99, "Chicken Strips with Peppers, Mushrooms and Sweetcorn with a BBQ sause base"));
+		choices.add(new Pizza("Chicken", 9.99, "Chicken, Sweetcorn"));
+		choices.add(new Pizza("Seafood Special", 9.99, "Tuna, Prawns, Salmon, Olives and Sweetcorn"));
+		choices.add(new Pizza("Veggie", 9.99, "Roast selection of Vegetables and olives with Goats Cheese"));
+		choices.add(new Pizza("Pepperoni", 8.99, "Just Pepperoni"));
+		choices.add(new Beverage("Coke", 0.70, "Coca-cola"));
+		choices.add(new Beverage("Fanta", 0.70, "Fanta"));
+		choices.add(new Beverage("Dr. Pepper", 0.70, "Dr. Pepper"));
+		choices.add(new Beverage("7-UP", 0.70, "7-UP"));
+		choices.add(new Beverage("Water", 0.50, "Still Water"));
 		XMLParser parser = new XMLParser();
-		parser.save(choices);
-		ArrayList<Product> p =  parser.load("new_products.xml").getProducts();
-		choicesPanel.init(choices);
+		parser.save(choices);*/
+		
+		XMLParser parser = new XMLParser();
+		ArrayList<Product> p =  parser.load("products.xml").getProducts();
+		choicesPanel.init(p);
 	}
 
 	@Override

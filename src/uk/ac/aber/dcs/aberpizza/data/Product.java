@@ -11,6 +11,7 @@ import javax.xml.bind.annotation.XmlType;
 @XmlRootElement
 @XmlType(propOrder = { "name", "description", "price", "options" })
 public abstract class Product implements Item {
+	@XmlElement(type=BigDecimal.class)
 	protected BigDecimal price;
 	protected String name;
 	protected String description;
@@ -28,13 +29,13 @@ public abstract class Product implements Item {
 		description = d;
 	}
 	
-	@XmlElement
+	//@XmlElement
 	@Override
 	public BigDecimal getPrice() {
 		return price;
 	}
 
-	@Override
+	//@Override
 	public void setPrice(Double p) {
 		price =  new BigDecimal(p);
 	}

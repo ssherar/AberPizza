@@ -29,7 +29,7 @@ public class XMLParser {
 			jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
 			
 			jaxbMarshaller.marshal(pl, System.out);
-			jaxbMarshaller.marshal(pl, new File("new_products.xml"));
+			jaxbMarshaller.marshal(pl, new File("products.xml"));
 		} catch (JAXBException e) {
 			e.printStackTrace();
 		}
