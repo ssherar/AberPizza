@@ -23,6 +23,10 @@ public class ChoiceListener implements ActionListener {
 		model = p;
 	}
 	
+	public ChoiceListener() {
+		type = null;
+	}
+	
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		if(this.type == ListeningType.ROOT) {
@@ -51,9 +55,8 @@ public class ChoiceListener implements ActionListener {
 				c.init(o);
 			}
 			
-			
 		} else {
-			
+
 		}
 	}
 

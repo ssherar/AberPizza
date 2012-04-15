@@ -3,11 +3,13 @@ package uk.ac.aber.dcs.aberpizza.gui;
 import java.awt.*;
 import javax.swing.*;
 
+import uk.ac.aber.dcs.aberpizza.controller.ChoiceListener;
 import uk.ac.aber.dcs.aberpizza.controller.Manager;
 
 public class ControllerPanel extends JPanel {
 	private Choices s;
 	private Manager manager;
+	private JPanel customerPane;
 	
 	public ControllerPanel(Manager m) {
 		super(new BorderLayout());
@@ -20,6 +22,8 @@ public class ControllerPanel extends JPanel {
 		Payment payment = new Payment();
 		this.add(s, BorderLayout.CENTER);
 		this.add(payment, BorderLayout.SOUTH);
+		
+		ChoiceListener l = new ChoiceListener();
 		
 	}
 	
