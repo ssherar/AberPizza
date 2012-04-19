@@ -126,6 +126,12 @@ public class TableDataModel extends AbstractTableModel{
 		return total;
 	}
 	
+	public void clearAll() {
+		int rows = this.data.size();
+		this.data.clear();
+		this.fireTableRowsDeleted(0, rows);
+	}
+	
 	private int find(Product p) {
 		int foundIndex = -1;
 		for(int i = 0; i < data.size(); ++i) {

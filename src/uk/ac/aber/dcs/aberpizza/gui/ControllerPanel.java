@@ -19,7 +19,7 @@ public class ControllerPanel extends JPanel {
 		setPreferredSize(new Dimension(400,0));
 		
 		s = new Choices(m);
-		Payment payment = new Payment();
+		Payment payment = new Payment(m);
 		this.add(s, BorderLayout.CENTER);
 		this.add(payment, BorderLayout.SOUTH);
 		

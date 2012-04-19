@@ -47,18 +47,28 @@ public class Manager implements Observer {
 		if(!(s instanceof String)) {
 			return;
 		}
-		
-		if(s.equals("priceIncreased")) {
+		if(o instanceof ProductModel) {
 			ProductModel p = (ProductModel) o;
-			items.addRow(p.getProduct(), 1, true);
-		} else if(s.equals("optionAdded")) {
-			ProductModel p = (ProductModel) o;
-			items.addOption(p.getOption(), p.getProduct());
-		} else if(s.equals("priceCancelled")) {
-			ProductModel p = (ProductModel) o;
-			items.decrement(p.getProduct());
+			if(s.equals("priceIncreased")) {
+				items.addRow(p.getProduct(), 1, true);
+			} else if(s.equals("optionAdded")) {;
+				items.addOption(p.getOption(), p.getProduct());
+			} else if(s.equals("priceCancelled")) {
+				items.decrement(p.getProduct());
+			}
+		} else if(o instanceof PaymentListener) {
+			PaymentListener p = (PaymentListener) o;
+			if(s.equals("cashedOff")) {
+				//showRecipt;
+				items.clearAll();
+			} else if(s.equals("cancelOrder")) {
+				int n = JOptionPane.showOptionDialog(window,"Are you sure that you want to cancel this order. THIS CANNOT BE UNDONE",
+								"Warning!", JOptionPane.YES_NO_OPTION,JOptionPane.WARNING_MESSAGE, null, null, s);
+				if(n == 0) {
+					items.clearAll();
+				}
+			}
 		}
-		
 		BigDecimal totalValue = items.calcTotal();
 		total.setValue(totalValue);
 	}
