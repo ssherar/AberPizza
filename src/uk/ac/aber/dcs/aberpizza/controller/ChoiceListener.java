@@ -54,7 +54,6 @@ public class ChoiceListener implements ActionListener {
 				model.addOption(o);
 				c.init(o);
 			}
-			
 		} else {
 
 		}
