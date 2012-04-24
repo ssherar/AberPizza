@@ -9,13 +9,13 @@ import java.awt.event.*;
 import java.math.BigDecimal;
 import java.util.*;
 
-public class Manager implements Observer {
+public class Till implements Observer {
 	private MainFrame window;
 	private TableDataModel items;
 	private Choices choicesPanel;
 	private Total total;
 	
-	public Manager() {
+	public Till() {
 		window = new MainFrame(this);
 		items = window.getModel();
 		choicesPanel = window.getChoices();
@@ -60,6 +60,7 @@ public class Manager implements Observer {
 			PaymentListener p = (PaymentListener) o;
 			if(s.equals("cashedOff")) {
 				//showRecipt;
+				new ReceiptDialog();
 				items.clearAll();
 			} else if(s.equals("cancelOrder")) {
 				int n = JOptionPane.showOptionDialog(window,"Are you sure that you want to cancel this order. THIS CANNOT BE UNDONE",
@@ -75,6 +76,10 @@ public class Manager implements Observer {
 	
 	public static BigDecimal round(BigDecimal r) {
 		return r.setScale(2, BigDecimal.ROUND_HALF_EVEN);
+	}
+	
+	public static void main(String[] args) {
+		new Till();
 	}
 	
 }

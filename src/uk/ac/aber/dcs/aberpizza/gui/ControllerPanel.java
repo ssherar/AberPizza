@@ -4,14 +4,14 @@ import java.awt.*;
 import javax.swing.*;
 
 import uk.ac.aber.dcs.aberpizza.controller.ChoiceListener;
-import uk.ac.aber.dcs.aberpizza.controller.Manager;
+import uk.ac.aber.dcs.aberpizza.controller.Till;
 
 public class ControllerPanel extends JPanel {
 	private Choices s;
-	private Manager manager;
+	private Till manager;
 	private JPanel customerPane;
 	
-	public ControllerPanel(Manager m) {
+	public ControllerPanel(Till m) {
 		super(new BorderLayout());
 		
 		manager = m;

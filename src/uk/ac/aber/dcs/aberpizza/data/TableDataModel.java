@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 import javax.swing.table.AbstractTableModel;
 
-import uk.ac.aber.dcs.aberpizza.controller.Manager;
+import uk.ac.aber.dcs.aberpizza.controller.Till;
 
 public class TableDataModel extends AbstractTableModel{
 	private String[] columnNames = {"Item Name", "Quantity", "Unitary Price", "Total"};
@@ -53,12 +53,12 @@ public class TableDataModel extends AbstractTableModel{
 			tmp[1] = (Integer) tmp[1] + 1;
 			
 			BigDecimal totalPrice = ((BigDecimal)tmp[2]).multiply(new BigDecimal((Integer) tmp[1]));
-			tmp[3] = Manager.round(totalPrice);
+			tmp[3] = Till.round(totalPrice);
 			data.set(foundIndex, tmp);
 			this.fireTableDataChanged();
 		} else {
-			data.add(new Object[] {p.getName(), quantity, Manager.round(p.getPrice()), 
-					Manager.round(p.getPrice().multiply(new BigDecimal(quantity))), cancellable, ""
+			data.add(new Object[] {p.getName(), quantity, Till.round(p.getPrice()), 
+					Till.round(p.getPrice().multiply(new BigDecimal(quantity))), cancellable, ""
 			});
 			
 			this.fireTableRowsInserted(data.size() - 1, 0);
@@ -76,7 +76,7 @@ public class TableDataModel extends AbstractTableModel{
 				tmp[1] = (Integer) tmp[1] - 1;
 				
 				BigDecimal totalPrice = ((BigDecimal)tmp[2]).multiply(new BigDecimal((Integer) tmp[1]));
-				tmp[3] = Manager.round(totalPrice);
+				tmp[3] = Till.round(totalPrice);
 				data.set(foundIndex, tmp);
 				this.fireTableDataChanged();
 			}
@@ -104,12 +104,12 @@ public class TableDataModel extends AbstractTableModel{
 				tmp[1] = (Integer) tmp[1] + 1;
 				
 				BigDecimal totalPrice = ((BigDecimal)tmp[2]).multiply(new BigDecimal((Integer) tmp[1]));
-				tmp[3] = Manager.round(totalPrice);
+				tmp[3] = Till.round(totalPrice);
 				data.set(j, tmp);
 				this.fireTableDataChanged();
 			} else {
 				this.data.add(i + 1, new Object[] {
-						o.getSize(), 1, Manager.round(o.getPrice()), Manager.round(o.getPrice().multiply(new BigDecimal(1))), false, p.getName()
+						o.getSize(), 1, Till.round(o.getPrice()), Till.round(o.getPrice().multiply(new BigDecimal(1))), false, p.getName()
 				});
 				this.fireTableRowsInserted(i + 1, 0);
 			}
