@@ -4,16 +4,21 @@ import java.util.LinkedList;
 
 import javax.swing.*;
 
+import uk.ac.aber.dcs.aberpizza.controller.Till;
+
 public class MenuBar extends JMenuBar {
 	private JMenu fileMenu;
 	private JMenu administrationMenu;
 	private JMenu helpMenu;
+	private Till manager;
 
 	
 	public MenuBar() {
 		fileMenu = new JMenu("File");
 		administrationMenu = new JMenu("Administration");
 		helpMenu = new JMenu("Help");
+		
+		manager = Till.getInstance();
 		
 		this.populateFile();
 		this.populateAdministration();
@@ -27,8 +32,12 @@ public class MenuBar extends JMenuBar {
 	private void populateFile() {
 		LinkedList<JMenuItem> file = new LinkedList<JMenuItem>();
 		
+		file.add(new JMenuItem("New Day"));
+		file.add(new JMenuItem("Load Day..."));
+		file.add(new JMenuItem("Save Day..."));
 		file.add(new JMenuItem("Exit"));
 		for(int i = 0; i < file.size(); i++) {
+			file.get(i).addActionListener(manager);
 			fileMenu.add(file.get(i));
 		}
 	}

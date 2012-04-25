@@ -6,20 +6,29 @@ import uk.ac.aber.dcs.aberpizza.gui.*;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.beans.XMLEncoder;
+import java.io.BufferedOutputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.math.BigDecimal;
 import java.util.*;
 
-public class Till implements Observer {
-	private MainFrame window;
-	private TableDataModel items;
-	private Choices choicesPanel;
-	private Total total;
+public class Till implements Observer, ActionListener {
+	private transient MainFrame window;
+	private transient TableDataModel items;
+	private transient Choices choicesPanel;
+	private transient Total total;
 	
 	public Till() {
+		
+	}
+	
+	public Till(boolean startup) {
 		window = new MainFrame(this);
 		items = window.getModel();
 		choicesPanel = window.getChoices();
 		total = window.getTotal();
+		
 		
 		XMLParser parser = new XMLParser();
 		ArrayList<Product> p =  parser.load("products.xml").getProducts();
@@ -62,8 +71,39 @@ public class Till implements Observer {
 		return r.setScale(2, BigDecimal.ROUND_HALF_EVEN);
 	}
 	
-	public static void main(String[] args) {
-		new Till();
+	
+	public void save() {
+		XMLEncoder encoder;
+		try {
+			//check if there is a day open...
+			encoder = new XMLEncoder(
+			        new BufferedOutputStream(
+			           new FileOutputStream("till.xml")));
+			encoder.writeObject(this);
+			encoder.close();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+		
+	}
+	
+	public static Till getInstance() {
+		return new Till();
+	}
+
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		String cmd = e.getActionCommand();
+		if(cmd == "New Day") {
+			
+		} else if(cmd == "Load Day...") {
+			
+		} else if(cmd == "Save Day...") {
+			
+		} else if(cmd == "Exit") {
+			System.exit(0);
+		}
 	}
 	
 }
