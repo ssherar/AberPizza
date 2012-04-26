@@ -1,6 +1,8 @@
 package uk.ac.aber.dcs.aberpizza.controller;
 import javax.swing.*;
 
+import com.sun.java.util.jar.pack.Package.File;
+
 import uk.ac.aber.dcs.aberpizza.data.*;
 import uk.ac.aber.dcs.aberpizza.gui.*;
 
@@ -33,6 +35,7 @@ public class Till implements Observer, ActionListener {
 		XMLParser parser = new XMLParser();
 		ArrayList<Product> p =  parser.load("products.xml").getProducts();
 		choicesPanel.init(p);
+		this.save();
 	}
 
 	@Override
@@ -74,11 +77,13 @@ public class Till implements Observer, ActionListener {
 	
 	public void save() {
 		XMLEncoder encoder;
+		Calendar date = new GregorianCalendar();
+		String filename = "till_" + date.get(Calendar.YEAR) + "_" + date.get(Calendar.MONTH) + "_" + date.get(Calendar.DAY_OF_MONTH)+".xml";
 		try {
 			//check if there is a day open...
 			encoder = new XMLEncoder(
 			        new BufferedOutputStream(
-			           new FileOutputStream("till.xml")));
+			           new FileOutputStream(filename)));
 			encoder.writeObject(this);
 			encoder.close();
 		} catch (FileNotFoundException e) {
@@ -104,6 +109,10 @@ public class Till implements Observer, ActionListener {
 		} else if(cmd == "Exit") {
 			System.exit(0);
 		}
+	}
+	
+	private boolean findToday() {
+		return false;
 	}
 	
 }
