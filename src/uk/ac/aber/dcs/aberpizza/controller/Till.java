@@ -49,6 +49,7 @@ public class Till implements Observer, ActionListener {
 				currentOrder.addItem(new OrderItem(p.getProduct()));
 				items.addRow(p.getProduct(), 1, true);
 			} else if(s.equals("optionAdded")) {;
+				currentOrder.addOption(p.getOption(), new OrderItem(p.getProduct()));
 				items.addOption(p.getOption(), p.getProduct());
 			} else if(s.equals("priceCancelled")) {
 				items.decrement(p.getProduct());

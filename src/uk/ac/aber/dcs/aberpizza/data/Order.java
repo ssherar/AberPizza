@@ -38,6 +38,13 @@ public class Order {
 		}
 	}
 	
+	public void addOption(Option o, OrderItem item){
+		int i = findItem(item);
+		if(i > -1) {
+			items.get(i).addOption(new OrderItemOption(o));
+		}
+	}
+	
 	public int findItem(OrderItem item) {
 		int i = -1;
 		for(OrderItem o : items) {
@@ -50,8 +57,7 @@ public class Order {
 	}
 	
 	public void changeQuantity(int index, int quantity) {
-		items.get(index).setQuantity(items.get(index).getQuantity() + 1);
-		System.out.println(items.get(index).getQuantity());
+		items.get(index).setQuantity(items.get(index).getQuantity() + quantity);
 	}
 	
 	
