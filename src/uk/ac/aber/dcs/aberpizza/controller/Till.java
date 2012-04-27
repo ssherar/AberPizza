@@ -1,8 +1,6 @@
 package uk.ac.aber.dcs.aberpizza.controller;
 import javax.swing.*;
 
-import com.sun.java.util.jar.pack.Package.File;
-
 import uk.ac.aber.dcs.aberpizza.data.*;
 import uk.ac.aber.dcs.aberpizza.gui.*;
 
@@ -16,10 +14,12 @@ import java.math.BigDecimal;
 import java.util.*;
 
 public class Till implements Observer, ActionListener {
-	private transient MainFrame window;
+	private transient MainFrame window; 
 	private transient TableDataModel items;
 	private transient Choices choicesPanel;
 	private transient Total total;
+	private static transient Till tillInstance;
+	private Order currentOrder = null;
 	
 	public Till() {
 		
@@ -46,6 +46,7 @@ public class Till implements Observer, ActionListener {
 		if(o instanceof ProductModel) {
 			ProductModel p = (ProductModel) o;
 			if(s.equals("priceIncreased")) {
+				currentOrder.addItem(new OrderItem(p.getProduct()));
 				items.addRow(p.getProduct(), 1, true);
 			} else if(s.equals("optionAdded")) {;
 				items.addOption(p.getOption(), p.getProduct());
@@ -93,7 +94,10 @@ public class Till implements Observer, ActionListener {
 	}
 	
 	public static Till getInstance() {
-		return new Till();
+		if(tillInstance == null) {
+			tillInstance = new Till();
+		}
+		return tillInstance;
 	}
 
 
@@ -113,6 +117,21 @@ public class Till implements Observer, ActionListener {
 	
 	private boolean findToday() {
 		return false;
+	}
+	
+	public boolean currentOrderSet() {
+		if(this.currentOrder == null) {
+			return false;
+		}
+		return true;
+	}
+	
+	public void setCurrentOrder(Order o) {
+		this.currentOrder = o;
+	}
+	
+	public void setCustomerName(String s) {
+		this.currentOrder.setCustomerName(s);
 	}
 	
 }

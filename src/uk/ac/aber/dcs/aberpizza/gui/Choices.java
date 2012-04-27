@@ -88,6 +88,8 @@ public class Choices extends JPanel{
 	private String format(String s) {
 		return (s.substring(0, 1)) + (s.substring(1).toLowerCase());
 	}
+
+	
 	
 
 }

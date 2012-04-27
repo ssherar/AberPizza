@@ -13,9 +13,9 @@ public enum Sizes {
 		String[] s = super.toString().split("_");
 		String ret = "";
 		for(int i = 0; i < s.length; i++) {
-			ret = s[i].substring(0, 1) + s[i].substring(1, s[i].length()).toLowerCase() + " ";
+			ret += s[i].substring(0, 1) + s[i].substring(1, s[i].length()).toLowerCase() + " ";
 		}
-		ret += ret.substring(0, ret.length() - 1);
+		ret = ret.substring(0, ret.length() - 1);
 		return ret;
 	}
 	
