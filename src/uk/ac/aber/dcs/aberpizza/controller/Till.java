@@ -55,7 +55,7 @@ public class Till implements Observer, ActionListener {
 				currentOrder.decrement(new OrderItem(p.getProduct()));
 				items.decrement(p.getProduct());
 			}
-		} else if(o instanceof PaymentListener) {
+		} else if(o instanceof PaymentListener) {s0git 
 			PaymentListener p = (PaymentListener) o;
 			if(s.equals("cashedOff")) {
 				//showRecipt;

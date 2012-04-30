@@ -1,5 +1,6 @@
 package uk.ac.aber.dcs.aberpizza.data;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 
 public class Order {
@@ -80,5 +81,15 @@ public class Order {
 		return ret;
 	}
 	
+	public BigDecimal getSubtotal() {
+		BigDecimal total = new BigDecimal(0.00);
+		for(OrderItem oi : items) {
+			total = total.add(oi.getItem().getPrice().multiply(new BigDecimal(oi.getQuantity())));
+			for(OrderItemOption oio : oi.getOptions()) {
+				total = total.add(oio.getOption().getPrice().multiply(new BigDecimal(oio.getQuantity())));
+			}
+		}
+		return total;
+	}
 	
 }

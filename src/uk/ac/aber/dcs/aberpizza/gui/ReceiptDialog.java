@@ -35,6 +35,8 @@ public class ReceiptDialog extends JDialog {
 		}
 		
 		String recData = FORMAT.replaceAll("\\[\\:items\\]", itemRec);
+		recData = recData.replaceAll("\\[\\:customerName\\]", o.getCustomerName());
+		recData = recData.replaceAll("\\[\\:subtotal\\]", ""+Till.round(o.getSubtotal()));
 		receipt = new JEditorPane();
 		receipt.setEditorKit(new HTMLEditorKit());
 		receipt.setText(recData);
