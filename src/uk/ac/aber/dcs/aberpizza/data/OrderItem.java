@@ -7,6 +7,8 @@ public class OrderItem {
 	private int quantity;
 	private ArrayList<OrderItemOption> options;
 	
+	public OrderItem() {}
+	
 	public OrderItem(Item item) {
 		this.item = item;
 		this.quantity = 1;

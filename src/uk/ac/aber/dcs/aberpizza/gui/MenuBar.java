@@ -13,12 +13,12 @@ public class MenuBar extends JMenuBar {
 	private Manager manager;
 
 	
-	public MenuBar() {
+	public MenuBar(Manager m) {
 		fileMenu = new JMenu("File");
 		administrationMenu = new JMenu("Administration");
 		helpMenu = new JMenu("Help");
 		
-		manager = Manager.getInstance();
+		manager = m;
 		
 		this.populateFile();
 		this.populateAdministration();

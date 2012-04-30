@@ -32,7 +32,7 @@ public class MainFrame extends JFrame{
 		dataPane = new DataPanel(m);
 		controllerPane = new ControllerPanel(m);
 
-		this.setJMenuBar(new MenuBar());
+		this.setJMenuBar(new MenuBar(manager));
 		this.add(dataPane, BorderLayout.CENTER);
 		this.add(controllerPane, BorderLayout.EAST);
 		this.pack();
@@ -56,6 +56,11 @@ public class MainFrame extends JFrame{
 
 	public Total getTotal() {
 		return dataPane.getTotal();
+	}
+	
+	@Override
+	public void setEnabled(boolean set) {
+		controllerPane.setEnabled(set, null);
 	}
 	
 }

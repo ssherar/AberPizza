@@ -4,6 +4,8 @@ public class OrderItemOption {
 	private Option option;
 	private int quantity;
 	
+	public OrderItemOption() {}
+	
 	public OrderItemOption(Option o) {
 		option = o;
 		quantity = 1;

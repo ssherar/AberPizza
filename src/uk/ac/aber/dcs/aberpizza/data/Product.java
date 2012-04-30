@@ -29,13 +29,13 @@ public abstract class Product implements Item {
 		description = d;
 	}
 	
-	//@XmlElement
+
 	@Override
 	public BigDecimal getPrice() {
 		return price;
 	}
 
-	//@Override
+	@Override
 	public void setPrice(Double p) {
 		price =  new BigDecimal(p);
 	}

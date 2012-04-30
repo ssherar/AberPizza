@@ -20,6 +20,7 @@ public class Manager implements Observer, ActionListener {
 	private transient Total total;
 	private static transient Manager tillInstance;
 	private Order currentOrder = null;
+	private Till till;
 	
 	public Manager() {
 		
@@ -27,6 +28,7 @@ public class Manager implements Observer, ActionListener {
 	
 	public Manager(boolean startup) {
 		window = new MainFrame(this);
+		window.setEnabled(false);
 		items = window.getModel();
 		choicesPanel = window.getChoices();
 		total = window.getTotal();
@@ -34,6 +36,11 @@ public class Manager implements Observer, ActionListener {
 		
 		XMLParser parser = new XMLParser();
 		ArrayList<Product> p =  parser.load("products.xml").getProducts();
+		p.add(new Side("Garlic Bread", 1.99, "Garlic Bread"));
+		p.add(new Side("Chips", 1.20, "Chips"));
+		p.add(new Side("Wedges", 1.50, "Wedges"));
+		p.add(new Side("Ketchup", 0.2, "Ketchup"));
+		parser.save(p);
 		choicesPanel.init(p);
 		this.save();
 	}
@@ -60,6 +67,8 @@ public class Manager implements Observer, ActionListener {
 			if(s.equals("cashedOff")) {
 				//showRecipt;
 				new ReceiptDialog(currentOrder, "Cash");
+				till.addOrder(currentOrder);
+				currentOrder = null;
 				items.clearAll();
 			} else if(s.equals("cancelOrder")) {
 				int n = JOptionPane.showOptionDialog(window,"Are you sure that you want to cancel this order. THIS CANNOT BE UNDONE",
@@ -80,19 +89,7 @@ public class Manager implements Observer, ActionListener {
 	
 	
 	public void save() {
-		XMLEncoder encoder;
-		Calendar date = new GregorianCalendar();
-		String filename = "till_" + date.get(Calendar.YEAR) + "_" + date.get(Calendar.MONTH) + "_" + date.get(Calendar.DAY_OF_MONTH)+".xml";
-		try {
-			//check if there is a day open...
-			encoder = new XMLEncoder(
-			        new BufferedOutputStream(
-			           new FileOutputStream(filename)));
-			encoder.writeObject(this);
-			encoder.close();
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		}
+	
 		
 	}
 	
@@ -108,7 +105,8 @@ public class Manager implements Observer, ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		String cmd = e.getActionCommand();
 		if(cmd == "New Day") {
-			
+			window.setEnabled(true);
+			till = new Till();
 		} else if(cmd == "Load Day...") {
 			
 		} else if(cmd == "Save Day...") {

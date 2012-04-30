@@ -9,7 +9,7 @@ public class ProductList {
 	@XmlElements({
 		@XmlElement(name="pizza", type=Pizza.class),
 		@XmlElement(name="drink", type=Beverage.class),
-		@XmlElement(name="side", type=Sides.class)
+		@XmlElement(name="side", type=Side.class)
 	})
 	private ArrayList<Product> product;
 	

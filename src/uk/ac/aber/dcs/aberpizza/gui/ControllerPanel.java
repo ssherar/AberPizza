@@ -46,6 +46,18 @@ public class ControllerPanel extends JPanel implements ActionListener{
 	public Choices getChoices() {
 		return s;
 	}
+	
+	public void setEnabled(boolean set, Component r) {
+		Component[] comps = (r != null) ? ((JPanel) r).getComponents() : this.getComponents();
+		for(Component j : comps) {
+			if(j instanceof JPanel) {
+				setEnabled(set, j);
+			} else if(j instanceof JMenu || j instanceof JMenuItem) {
+				continue;
+			}
+			j.setEnabled(set);
+		}
+	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {

@@ -1,5 +1,7 @@
 package uk.ac.aber.dcs.aberpizza.data;
 
+import java.math.BigDecimal;
+
 
 public class Pizza extends Product {
 
@@ -17,6 +19,11 @@ public class Pizza extends Product {
 	@Override
 	public String getType() {
 		return Pizza.class.toString();
+	}
+	
+	@Override
+	public BigDecimal getPrice() {
+		return this.price;
 	}
 	
 
