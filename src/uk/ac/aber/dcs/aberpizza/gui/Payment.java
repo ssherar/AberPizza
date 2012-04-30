@@ -4,15 +4,15 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import uk.ac.aber.dcs.aberpizza.controller.Till;
+import uk.ac.aber.dcs.aberpizza.controller.Manager;
 import uk.ac.aber.dcs.aberpizza.controller.PaymentListener;
 
 import java.awt.*;
 
 public class Payment extends JPanel {
-	private Till manager;
+	private Manager manager;
 	
-	public Payment(Till m) {
+	public Payment(Manager m) {
 		super(new GridLayout(2, 4));
 		manager = m;
 		this.setPreferredSize(new Dimension(0,200));

@@ -9,16 +9,16 @@ import java.awt.event.KeyListener;
 import javax.swing.*;
 
 import uk.ac.aber.dcs.aberpizza.controller.ChoiceListener;
-import uk.ac.aber.dcs.aberpizza.controller.Till;
+import uk.ac.aber.dcs.aberpizza.controller.Manager;
 import uk.ac.aber.dcs.aberpizza.data.Order;
 
 public class ControllerPanel extends JPanel implements ActionListener{
 	private Choices s;
-	private Till manager;
+	private Manager manager;
 	private JPanel customerPane;
 	private JTextField customerName;
 	
-	public ControllerPanel(Till m) {
+	public ControllerPanel(Manager m) {
 		super(new BorderLayout());
 		
 		manager = m;

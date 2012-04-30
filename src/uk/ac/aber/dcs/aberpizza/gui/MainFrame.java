@@ -6,15 +6,15 @@ import java.util.Observer;
 
 import javax.swing.*;
 
-import uk.ac.aber.dcs.aberpizza.controller.Till;
+import uk.ac.aber.dcs.aberpizza.controller.Manager;
 import uk.ac.aber.dcs.aberpizza.data.TableDataModel;
 
 public class MainFrame extends JFrame{
 	private DataPanel dataPane;
 	private ControllerPanel controllerPane;
-	private Till manager;
+	private Manager manager;
 	
-	public MainFrame(Till m) {
+	public MainFrame(Manager m) {
 		try {
 			 UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 		} catch(Exception e) {

@@ -5,17 +5,17 @@ import java.math.BigDecimal;
 
 import javax.swing.*;
 
-import uk.ac.aber.dcs.aberpizza.controller.Till;
+import uk.ac.aber.dcs.aberpizza.controller.Manager;
 import uk.ac.aber.dcs.aberpizza.data.TableDataModel;
 
 public class DataPanel extends JPanel {
 
 	private JTable items;
 	private TableDataModel dModel;
-	private Till manager;
+	private Manager manager;
 	private Total bottom;
 	
-	public DataPanel(Till m) {
+	public DataPanel(Manager m) {
 		super(new BorderLayout());
 		dModel = new TableDataModel();
 		items = new JTable(dModel);

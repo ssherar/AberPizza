@@ -13,19 +13,19 @@ import java.io.FileOutputStream;
 import java.math.BigDecimal;
 import java.util.*;
 
-public class Till implements Observer, ActionListener {
+public class Manager implements Observer, ActionListener {
 	private transient MainFrame window; 
 	private transient TableDataModel items;
 	private transient Choices choicesPanel;
 	private transient Total total;
-	private static transient Till tillInstance;
+	private static transient Manager tillInstance;
 	private Order currentOrder = null;
 	
-	public Till() {
+	public Manager() {
 		
 	}
 	
-	public Till(boolean startup) {
+	public Manager(boolean startup) {
 		window = new MainFrame(this);
 		items = window.getModel();
 		choicesPanel = window.getChoices();
@@ -55,11 +55,11 @@ public class Till implements Observer, ActionListener {
 				currentOrder.decrement(new OrderItem(p.getProduct()));
 				items.decrement(p.getProduct());
 			}
-		} else if(o instanceof PaymentListener) {s0git 
+		} else if(o instanceof PaymentListener) { 
 			PaymentListener p = (PaymentListener) o;
 			if(s.equals("cashedOff")) {
 				//showRecipt;
-				new ReceiptDialog(currentOrder, items.calcTotal());
+				new ReceiptDialog(currentOrder, "Cash");
 				items.clearAll();
 			} else if(s.equals("cancelOrder")) {
 				int n = JOptionPane.showOptionDialog(window,"Are you sure that you want to cancel this order. THIS CANNOT BE UNDONE",
@@ -96,9 +96,9 @@ public class Till implements Observer, ActionListener {
 		
 	}
 	
-	public static Till getInstance() {
+	public static Manager getInstance() {
 		if(tillInstance == null) {
-			tillInstance = new Till();
+			tillInstance = new Manager();
 		}
 		return tillInstance;
 	}

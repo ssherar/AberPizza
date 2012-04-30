@@ -6,9 +6,9 @@ import java.util.Observable;
 
 public class PaymentListener extends Observable implements ActionListener {
 	
-	private Till manager;
+	private Manager manager;
 	
-	public PaymentListener(Till m) {
+	public PaymentListener(Manager m) {
 		manager = m;
 		this.addObserver(manager);
 	}

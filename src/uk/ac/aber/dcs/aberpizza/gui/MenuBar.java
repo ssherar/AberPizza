@@ -4,13 +4,13 @@ import java.util.LinkedList;
 
 import javax.swing.*;
 
-import uk.ac.aber.dcs.aberpizza.controller.Till;
+import uk.ac.aber.dcs.aberpizza.controller.Manager;
 
 public class MenuBar extends JMenuBar {
 	private JMenu fileMenu;
 	private JMenu administrationMenu;
 	private JMenu helpMenu;
-	private Till manager;
+	private Manager manager;
 
 	
 	public MenuBar() {
@@ -18,7 +18,7 @@ public class MenuBar extends JMenuBar {
 		administrationMenu = new JMenu("Administration");
 		helpMenu = new JMenu("Help");
 		
-		manager = Till.getInstance();
+		manager = Manager.getInstance();
 		
 		this.populateFile();
 		this.populateAdministration();

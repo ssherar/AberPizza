@@ -5,16 +5,16 @@ import java.util.Observable;
 import uk.ac.aber.dcs.aberpizza.data.*;
 import uk.ac.aber.dcs.aberpizza.controller.*;
 
-import uk.ac.aber.dcs.aberpizza.controller.Till;
+import uk.ac.aber.dcs.aberpizza.controller.Manager;
 
 
 public class ProductModel extends Observable {
-	private Till manager;
+	private Manager manager;
 	private Option option;
 	private Product item;
 	private BigDecimal runningPrice;
 	
-	public ProductModel(Till m) {
+	public ProductModel(Manager m) {
 		manager = m;
 		this.addObserver(manager);
 		runningPrice = new BigDecimal(0.00);

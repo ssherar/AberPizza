@@ -2,7 +2,7 @@ package uk.ac.aber.dcs.aberpizza.gui;
 import javax.swing.*;
 
 import uk.ac.aber.dcs.aberpizza.controller.ChoiceListener;
-import uk.ac.aber.dcs.aberpizza.controller.Till;
+import uk.ac.aber.dcs.aberpizza.controller.Manager;
 import uk.ac.aber.dcs.aberpizza.data.Option;
 import uk.ac.aber.dcs.aberpizza.data.Product;
 import uk.ac.aber.dcs.aberpizza.data.ProductModel;
@@ -20,10 +20,10 @@ public class Choices extends JPanel{
 	private ArrayList<Product> c;
 	private ChoiceListener l;
 	private BigDecimal currentPrice;
-	private Till manager;
+	private Manager manager;
 	private ProductModel p;
 	
-	public Choices(Till m) {
+	public Choices(Manager m) {
 		super(new GridLayout(0,4));
 		manager = m;
 		p = new ProductModel(m);
