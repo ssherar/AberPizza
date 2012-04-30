@@ -60,5 +60,25 @@ public class Order {
 		items.get(index).setQuantity(items.get(index).getQuantity() + quantity);
 	}
 	
+	public void decrement(OrderItem item) {
+		int index = findItem(item);
+		int quantity = items.get(index).getQuantity();
+		
+		if((quantity - 1) == 0) {
+			items.remove(index);
+		} else {
+			changeQuantity(index, -1);
+		}
+	}
+	
+	@Override
+	public String toString() {
+		String ret = "";
+		for(OrderItem i : items) {
+			ret += i.getItem().getDescription() + "\t\t\t" + i.getQuantity()+"\n";
+		}
+		return ret;
+	}
+	
 	
 }

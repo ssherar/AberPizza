@@ -52,13 +52,14 @@ public class Till implements Observer, ActionListener {
 				currentOrder.addOption(p.getOption(), new OrderItem(p.getProduct()));
 				items.addOption(p.getOption(), p.getProduct());
 			} else if(s.equals("priceCancelled")) {
+				currentOrder.decrement(new OrderItem(p.getProduct()));
 				items.decrement(p.getProduct());
 			}
 		} else if(o instanceof PaymentListener) {
 			PaymentListener p = (PaymentListener) o;
 			if(s.equals("cashedOff")) {
 				//showRecipt;
-				new ReceiptDialog();
+				new ReceiptDialog(currentOrder, items.calcTotal());
 				items.clearAll();
 			} else if(s.equals("cancelOrder")) {
 				int n = JOptionPane.showOptionDialog(window,"Are you sure that you want to cancel this order. THIS CANNOT BE UNDONE",
@@ -70,6 +71,7 @@ public class Till implements Observer, ActionListener {
 		}
 		BigDecimal totalValue = items.calcTotal();
 		total.setValue(totalValue);
+
 	}
 	
 	public static BigDecimal round(BigDecimal r) {
