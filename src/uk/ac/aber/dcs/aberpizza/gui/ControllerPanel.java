@@ -68,4 +68,10 @@ public class ControllerPanel extends JPanel implements ActionListener{
 		s.setVisible(true);
 	}
 	
+	@Override
+	public void setVisible(boolean set) {
+		s.setVisible(set);
+		if(!set)customerName.setText("");
+	}
+	
 }

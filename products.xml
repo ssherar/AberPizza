@@ -124,40 +124,21 @@
         <name>Garlic Bread</name>
         <description>Garlic Bread</description>
         <price>1.9899999999999999911182158029987476766109466552734375</price>
-        <options>
-            <option size="SMALL" price="0"/>
-            <option size="MEDIUM" price="2.5"/>
-            <option size="LARGE" price="5"/>
-        </options>
     </side>
     <side>
         <name>Chips</name>
         <description>Chips</description>
         <price>1.1999999999999999555910790149937383830547332763671875</price>
-        <options>
-            <option size="SMALL" price="0"/>
-            <option size="MEDIUM" price="2.5"/>
-            <option size="LARGE" price="5"/>
-        </options>
+
     </side>
     <side>
         <name>Wedges</name>
         <description>Wedges</description>
         <price>1.5</price>
-        <options>
-            <option size="SMALL" price="0"/>
-            <option size="MEDIUM" price="2.5"/>
-            <option size="LARGE" price="5"/>
-        </options>
     </side>
     <side>
         <name>Ketchup</name>
         <description>Ketchup</description>
         <price>0.200000000000000011102230246251565404236316680908203125</price>
-        <options>
-            <option size="SMALL" price="0"/>
-            <option size="MEDIUM" price="2.5"/>
-            <option size="LARGE" price="5"/>
-        </options>
     </side>
 </productList>

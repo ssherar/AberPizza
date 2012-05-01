@@ -3,9 +3,7 @@ import javax.swing.*;
 
 import uk.ac.aber.dcs.aberpizza.controller.ChoiceListener;
 import uk.ac.aber.dcs.aberpizza.controller.Manager;
-import uk.ac.aber.dcs.aberpizza.data.Option;
-import uk.ac.aber.dcs.aberpizza.data.Product;
-import uk.ac.aber.dcs.aberpizza.data.ProductModel;
+import uk.ac.aber.dcs.aberpizza.data.*;
 
 import java.awt.*;
 import java.awt.event.*;
@@ -45,8 +43,11 @@ public class Choices extends JPanel{
 		this.removeAll();
 		this.setLayout(new GridLayout(0,4));
 		currentPrice  = new BigDecimal(0.00);
-		for(Product p : c) {
+		for(Item p : c) {
 			JButton tmp = new JButton(p.getName());
+			if(p instanceof Pizza) tmp.setBackground(Color.red.brighter());
+			else if (p instanceof Beverage) tmp.setBackground(Color.yellow);
+			else if (p instanceof Side) tmp.setBackground(Color.green);
 			tmp.addActionListener(l);
 			this.add(tmp);
 		}

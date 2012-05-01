@@ -36,11 +36,6 @@ public class Manager implements Observer, ActionListener {
 		
 		XMLParser parser = new XMLParser();
 		ArrayList<Product> p =  parser.load("products.xml").getProducts();
-		p.add(new Side("Garlic Bread", 1.99, "Garlic Bread"));
-		p.add(new Side("Chips", 1.20, "Chips"));
-		p.add(new Side("Wedges", 1.50, "Wedges"));
-		p.add(new Side("Ketchup", 0.2, "Ketchup"));
-		parser.save(p);
 		choicesPanel.init(p);
 		this.save();
 	}
@@ -69,6 +64,7 @@ public class Manager implements Observer, ActionListener {
 				new ReceiptDialog(currentOrder, "Cash");
 				till.addOrder(currentOrder);
 				currentOrder = null;
+				choicesPanel.setVisible(false);
 				items.clearAll();
 			} else if(s.equals("cancelOrder")) {
 				int n = JOptionPane.showOptionDialog(window,"Are you sure that you want to cancel this order. THIS CANNOT BE UNDONE",
