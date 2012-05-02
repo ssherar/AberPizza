@@ -1,8 +1,11 @@
 package uk.ac.aber.dcs.aberpizza.controller;
 
 import java.beans.PersistenceDelegate;
+import java.beans.XMLDecoder;
 import java.beans.XMLEncoder;
+import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -11,6 +14,8 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
+
+import javax.swing.JFileChooser;
 
 import uk.ac.aber.dcs.aberpizza.data.*;
 
@@ -47,7 +52,16 @@ public class Till {
 			encoder = null;
 		}
 	}
-	public static Till load(String fileName) throws IOException {
+	public static Till load() throws IOException {
+		JFileChooser jc = new JFileChooser();
+		int retVal = jc.showOpenDialog(null);
+		
+		if(retVal == JFileChooser.APPROVE_OPTION) {
+			System.out.println(jc.getSelectedFile());
+			XMLDecoder decoder = new XMLDecoder(new BufferedInputStream(new FileInputStream(jc.getSelectedFile())));
+			return (Till) decoder.readObject();
+		}
+		
 		return null;
 	}
 

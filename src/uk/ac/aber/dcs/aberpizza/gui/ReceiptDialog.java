@@ -49,7 +49,7 @@ public class ReceiptDialog extends JDialog {
 		String recData = FORMAT.replaceAll("\\[\\:items\\]", itemRec);
 		recData = recData.replaceAll("\\[\\:customerName\\]", o.getCustomerName());
 		recData = recData.replaceAll("\\[\\:subtotal\\]", ""+Manager.round(o.getSubtotal()));
-		recData = recData.replaceAll("\\[\\:paymentoption\\]", method);
+		recData = recData.replaceAll("\\[\\:paymentoption\\]", ((method == null) ? "Paid" : method));
 		recData = recData.replaceAll("\\[\\:discount\\]", ""+order.getDiscount());
 		recData = recData.replaceAll("\\[\\:paymentoption\\]", 
 					((method == null) ? "Paid" : method)

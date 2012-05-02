@@ -1,5 +1,6 @@
 package uk.ac.aber.dcs.aberpizza.gui;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.event.ActionEvent;
@@ -24,34 +25,49 @@ import javax.swing.table.AbstractTableModel;
 import javax.swing.table.TableCellEditor;
 import javax.swing.table.TableCellRenderer;
 
-public class SalesDialog extends JDialog {
+import uk.ac.aber.dcs.aberpizza.data.Order;
+
+public class SalesDialog extends JDialog implements ActionListener {
 	private TableModel tm;
 	private JTable table;
-	
 
-	public SalesDialog() {
+	public SalesDialog(ArrayList<Order> order) {
+		this.setLayout(new BorderLayout());
 		setSize(500, 500);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
-		tm = new TableModel();
+		tm = new TableModel(order);
 		table = new JTable(tm);
 		table.setRowHeight(36);
-		this.add(table);
+		this.add(table, BorderLayout.CENTER);
+		
+		JButton showReceipt = new JButton("Show Receipt...");
+		showReceipt.addActionListener(this);
+		this.add(showReceipt, BorderLayout.SOUTH);
 
 		this.validate();
 		this.repaint();
 		this.doLayout();
 		setVisible(true);
+		
 
 
+	}
+	
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		if(table.getSelectedRow() > -1) {
+			Order o = tm.getOrder(table.getSelectedRow());
+			new ReceiptDialog(o);
+		}
 	}
 
 	public class TableModel extends AbstractTableModel {
 		private String[] columnNames = {"Date", "Name", "Total"};
-		private ArrayList<Object[]> data = new ArrayList<Object[]>();
+		private ArrayList<Order> data;
 
-		TableModel() {
-			data.add(new Object[] {"17/01/92:01:29:30", "Sam Sherar", "£95.99"});
+		TableModel(ArrayList<Order> orders) {
+			data = orders;
 		}
 
 		@Override
@@ -69,12 +85,22 @@ public class SalesDialog extends JDialog {
 		@Override
 		public Object getValueAt(int row, int col) {
 			// TODO Auto-generated method stub
-			return data.get(row)[col];
+			if(col == 0) {
+				return null; /*data.get(row).getDate();*/
+			} else if(col == 1) {
+				return data.get(row).getCustomerName();
+			} else if(col == 2) {
+				return data.get(row).getTotal();
+			} else return null;
 		}
 
 		@Override
 		public String getColumnName(int col) {
 			return columnNames[col];
+		}
+		
+		public Order getOrder(int row) {
+			return data.get(row);
 		}
 
 	}

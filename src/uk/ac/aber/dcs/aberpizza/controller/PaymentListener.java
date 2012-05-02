@@ -22,6 +22,9 @@ public class PaymentListener extends Observable implements ActionListener {
 		} else if(cmd.equalsIgnoreCase("cancel order")) {
 			this.setChanged();
 			this.notifyObservers("cancelOrder");
+		} else if(cmd.equalsIgnoreCase("void item")) {
+			this.setChanged();
+			this.notifyObservers("itemVoid");
 		}
 	}
 

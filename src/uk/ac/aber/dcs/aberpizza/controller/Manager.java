@@ -10,23 +10,20 @@ import java.beans.XMLEncoder;
 import java.io.BufferedOutputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.*;
 
 public class Manager implements Observer, ActionListener {
-	private transient MainFrame window; 
-	private transient TableDataModel items;
-	private transient Choices choicesPanel;
-	private transient Total total;
-	private static transient Manager tillInstance;
+	private MainFrame window; 
+	private TableDataModel items;
+	private Choices choicesPanel;
+	private Total total;
 	private Order currentOrder = null;
 	private Till till;
 	
-	public Manager() {
-		
-	}
 	
-	public Manager(boolean startup) {
+	public Manager() {
 		window = new MainFrame(this);
 		window.setEnabled(false);
 		items = window.getModel();
@@ -38,7 +35,6 @@ public class Manager implements Observer, ActionListener {
 		ArrayList<Product> p =  parser.load("products.xml").getProducts();
 
 		choicesPanel.init(p);
-		this.save();
 	}
 
 	@Override
@@ -84,19 +80,6 @@ public class Manager implements Observer, ActionListener {
 	public static BigDecimal round(BigDecimal r) {
 		return r.setScale(2, BigDecimal.ROUND_HALF_EVEN);
 	}
-	
-	
-	public void save() {
-	
-		
-	}
-	
-	public static Manager getInstance() {
-		if(tillInstance == null) {
-			tillInstance = new Manager();
-		}
-		return tillInstance;
-	}
 
 
 	@Override
@@ -106,18 +89,23 @@ public class Manager implements Observer, ActionListener {
 			window.setEnabled(true);
 			till = new Till();
 		} else if(cmd == "Load Day...") {
-			
+			try {
+				till = Till.load();
+				window.setEnabled(true);
+			} catch(IOException ie) {
+				
+			}
 		} else if(cmd == "Save Day...") {
-			
+			till.save();
 		} else if(cmd == "Exit") {
 			System.exit(0);
 		} else if (cmd == "Sales Report") {
-			new SalesDialog();
+			if(till != null && till.getOrders().size() == 0)
+				new SalesDialog(till.getOrders());
+			else
+				JOptionPane.showMessageDialog(window, "Till has not been loader or there has not been any orders today", 
+						"Warning", JOptionPane.ERROR_MESSAGE);
 		}
-	}
-	
-	private boolean findToday() {
-		return false;
 	}
 	
 	public boolean currentOrderSet() {
