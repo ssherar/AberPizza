@@ -1,18 +1,28 @@
 package uk.ac.aber.dcs.aberpizza.gui;
 
+import java.awt.event.KeyEvent;
 import java.util.LinkedList;
 
 import javax.swing.*;
 
 import uk.ac.aber.dcs.aberpizza.controller.Manager;
 
+/**
+ * This is the menu bar for the GUI
+ * @author samuelsherar
+ * @version
+ *
+ */
 public class MenuBar extends JMenuBar {
 	private JMenu fileMenu;
 	private JMenu administrationMenu;
 	private JMenu helpMenu;
 	private Manager manager;
 
-	
+	/**
+	 * 
+	 * @param m
+	 */
 	public MenuBar(Manager m) {
 		fileMenu = new JMenu("File");
 		administrationMenu = new JMenu("Administration");
@@ -36,6 +46,8 @@ public class MenuBar extends JMenuBar {
 		file.add(new JMenuItem("Load Day..."));
 		file.add(new JMenuItem("Save Day..."));
 		file.add(new JMenuItem("Exit"));
+		
+		file.get(0).setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_N, KeyEvent.META_MASK));
 		for(int i = 0; i < file.size(); i++) {
 			file.get(i).addActionListener(manager);
 			fileMenu.add(file.get(i));
@@ -48,6 +60,8 @@ public class MenuBar extends JMenuBar {
 		administration.add(new JMenuItem("Sales Report"));
 		administration.add(new JMenuItem("Z-Index"));
 		for(int i = 0; i < administration.size(); i++) {
+			
+			administration.get(i).addActionListener(manager);
 			administrationMenu.add(administration.get(i));
 		}
 	}

@@ -3,20 +3,32 @@ package uk.ac.aber.dcs.aberpizza.data;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 
+import uk.ac.aber.dcs.aberpizza.controller.Manager;
+
 public class Order {
+	/**
+	 * 
+	 */
 	private String customerName;
 	private ArrayList<OrderItem> items;
+	private BigDecimal discount;
 	
 	public Order() {
 		this.customerName = "null";
 		items = new ArrayList<OrderItem>();
+		discount = new BigDecimal(0);
 	}
 	
 	public Order(String customer) {
 		this.customerName = customer;
 		items = new ArrayList<OrderItem>();
+		discount = new BigDecimal(0);
 	}
 	
+	/**
+	 * 
+	 * @return the customer name
+	 */
 	public String getCustomerName() {
 		return customerName;
 	}
@@ -90,6 +102,16 @@ public class Order {
 			}
 		}
 		return total;
+	}
+
+	public BigDecimal getDiscount() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public BigDecimal getTotal() {
+		// TODO Auto-generated method stub
+		return Manager.round(getSubtotal().subtract(discount));
 	}
 	
 }

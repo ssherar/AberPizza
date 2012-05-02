@@ -111,6 +111,8 @@ public class Manager implements Observer, ActionListener {
 			
 		} else if(cmd == "Exit") {
 			System.exit(0);
+		} else if (cmd == "Sales Report") {
+			new SalesDialog();
 		}
 	}
 	

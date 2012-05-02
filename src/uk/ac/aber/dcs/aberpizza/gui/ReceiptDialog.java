@@ -14,21 +14,35 @@ public class ReceiptDialog extends JDialog {
 	private final String ITEMS = "<tr> <td> [:productName] </td> <td> [:quantity] </td> <td>£[:unitaryprice]</td>  <td>£[:itemprice] </td> </tr>";
 	private Order order;
 	
+	public ReceiptDialog(Order o) {
+		this(o ,null);
+	}
+	
 	public ReceiptDialog(Order o, String method) {
 		order = o;
 		String itemRec = "";
 		
 		for(OrderItem i : order.getItems()) {
 			String tmp = ITEMS;
-			for(OrderItemOption oio: i.getOptions()) {
-				BigDecimal price = Manager.round(i.getItem().getPrice().add(oio.getOption().getPrice()));
-				int quantity = oio.getQuantity();
-				tmp = tmp.replaceAll("\\[\\:productName\\]", i.getItem().getDescription() + " - " + oio.getOption().getSize());
-				tmp = tmp.replaceAll("\\[\\:quantity\\]", ""+quantity);
-				tmp = tmp.replaceAll("\\[\\:unitaryprice\\]", ""+price);
-				tmp = tmp.replaceAll("\\[\\:itemprice\\]", ""+(Manager.round(price.multiply(new BigDecimal(quantity)))));
+			if(i.getOptions().size() > 0) {
+				for(OrderItemOption oio: i.getOptions()) {
+					BigDecimal price = Manager.round(i.getItem().getPrice().add(oio.getOption().getPrice()));
+					int quantity = oio.getQuantity();
+					tmp = tmp.replaceAll("\\[\\:productName\\]", i.getItem().getDescription() + " - " + oio.getOption().getSize());
+					tmp = tmp.replaceAll("\\[\\:quantity\\]", ""+quantity);
+					tmp = tmp.replaceAll("\\[\\:unitaryprice\\]", ""+price);
+					tmp = tmp.replaceAll("\\[\\:itemprice\\]", ""+(Manager.round(price.multiply(new BigDecimal(quantity)))));
+					itemRec += tmp + "\n";
+				}
+			} else {
+				BigDecimal price = Manager.round(i.getItem().getPrice().multiply(new BigDecimal(i.getQuantity())));
+				tmp = tmp.replaceAll("\\[\\:productName\\]", i.getItem().getDescription());
+				tmp = tmp.replaceAll("\\[\\:quantity\\]", ""+i.getQuantity());
+				tmp = tmp.replaceAll("\\[\\:unitaryprice\\]", ""+Manager.round(i.getItem().getPrice()));
+				tmp = tmp.replaceAll("\\[\\:itemprice\\]", ""+price);
 				itemRec += tmp + "\n";
 			}
+			
 			
 		}
 		
@@ -36,6 +50,12 @@ public class ReceiptDialog extends JDialog {
 		recData = recData.replaceAll("\\[\\:customerName\\]", o.getCustomerName());
 		recData = recData.replaceAll("\\[\\:subtotal\\]", ""+Manager.round(o.getSubtotal()));
 		recData = recData.replaceAll("\\[\\:paymentoption\\]", method);
+		recData = recData.replaceAll("\\[\\:discount\\]", ""+order.getDiscount());
+		recData = recData.replaceAll("\\[\\:paymentoption\\]", 
+					((method == null) ? "Paid" : method)
+				);
+		recData = recData.replaceAll("\\[\\:total\\]", ""+order.getTotal());
+		recData = recData.replaceAll("\\[\\:paid\\]", ""+order.getTotal());
 		receipt = new JEditorPane();
 		receipt.setEditorKit(new HTMLEditorKit());
 		receipt.setText(recData);
