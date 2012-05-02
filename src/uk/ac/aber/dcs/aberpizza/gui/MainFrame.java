@@ -58,6 +58,10 @@ public class MainFrame extends JFrame{
 		return dataPane.getTotal();
 	}
 	
+	public JTable getTable() {
+		return dataPane.getItems();
+	}
+	
 	@Override
 	public void setEnabled(boolean set) {
 		controllerPane.setEnabled(set, null);

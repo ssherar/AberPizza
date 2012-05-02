@@ -70,6 +70,8 @@ public class Manager implements Observer, ActionListener {
 				if(n == 0) {
 					items.clearAll();
 				}
+			} else if(s.equals("itemVoid")) {
+				items.decrement(window.getTable().getSelectedRow());
 			}
 		}
 		BigDecimal totalValue = items.calcTotal();

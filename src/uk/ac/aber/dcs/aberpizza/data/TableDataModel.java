@@ -58,7 +58,7 @@ public class TableDataModel extends AbstractTableModel{
 			this.fireTableDataChanged();
 		} else {
 			data.add(new Object[] {p.getName(), quantity, Manager.round(p.getPrice()), 
-					Manager.round(p.getPrice().multiply(new BigDecimal(quantity))), cancellable, ""
+					Manager.round(p.getPrice().multiply(new BigDecimal(quantity))), cancellable, "", -1
 			});
 			
 			this.fireTableRowsInserted(data.size() - 1, 0);
@@ -80,6 +80,26 @@ public class TableDataModel extends AbstractTableModel{
 				data.set(foundIndex, tmp);
 				this.fireTableDataChanged();
 			}
+		}
+	}
+	
+	public void decrement(int index) {
+		Object[] tmp = data.get(index);
+		if((Integer) tmp[1] == 1) {
+			int pIndex = (Integer) data.get(index)[6];
+			this.remove(index);
+			if(pIndex > -1)
+				this.decrement(pIndex);
+		} else {
+			tmp[1] = (Integer) tmp[1] - 1;
+			
+			BigDecimal totalPrice = ((BigDecimal)tmp[2]).multiply(new BigDecimal((Integer) tmp[1]));
+			tmp[3] = Manager.round(totalPrice);
+			data.set(index, tmp);
+			int pIndex = (Integer) data.get(index)[6];
+			if(pIndex > -1)
+				this.decrement(pIndex);
+			this.fireTableDataChanged();
 		}
 	}
 	
@@ -109,7 +129,7 @@ public class TableDataModel extends AbstractTableModel{
 				this.fireTableDataChanged();
 			} else {
 				this.data.add(i + 1, new Object[] {
-						o.getSize(), 1, Manager.round(o.getPrice()), Manager.round(o.getPrice().multiply(new BigDecimal(1))), false, p.getName()
+						o.getSize(), 1, Manager.round(o.getPrice()), Manager.round(o.getPrice().multiply(new BigDecimal(1))), false, p.getName(), i
 				});
 				this.fireTableRowsInserted(i + 1, 0);
 			}
@@ -136,6 +156,17 @@ public class TableDataModel extends AbstractTableModel{
 		int foundIndex = -1;
 		for(int i = 0; i < data.size(); ++i) {
 			if(data.get(i)[0] == p.getName()) {
+				foundIndex = i;
+				break;
+			}
+		}
+		return foundIndex;
+	}
+	
+	private int find(String product) {
+		int foundIndex = -1;
+		for(int i = 0; i < data.size(); ++i) {
+			if(data.get(i)[0] == product) {
 				foundIndex = i;
 				break;
 			}
