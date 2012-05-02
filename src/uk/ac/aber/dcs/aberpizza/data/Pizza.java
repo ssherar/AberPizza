@@ -20,11 +20,5 @@ public class Pizza extends Product {
 	public String getType() {
 		return Pizza.class.toString();
 	}
-	
-	@Override
-	public BigDecimal getPrice() {
-		return this.price;
-	}
-	
 
 }

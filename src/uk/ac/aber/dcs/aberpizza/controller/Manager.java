@@ -36,6 +36,7 @@ public class Manager implements Observer, ActionListener {
 		
 		XMLParser parser = new XMLParser();
 		ArrayList<Product> p =  parser.load("products.xml").getProducts();
+
 		choicesPanel.init(p);
 		this.save();
 	}
@@ -63,6 +64,7 @@ public class Manager implements Observer, ActionListener {
 				//showRecipt;
 				new ReceiptDialog(currentOrder, "Cash");
 				till.addOrder(currentOrder);
+				till.save();
 				currentOrder = null;
 				choicesPanel.setVisible(false);
 				items.clearAll();

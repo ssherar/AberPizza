@@ -2,7 +2,7 @@
 <productList>
     <pizza>
         <name>Margherita</name>
-        <description>Cheese and Tomato Pizza</description>
+        <description>Margherita</description>
         <price>7.9900000000000002131628207280300557613372802734375</price>
         <options>
             <option size="SMALL" price="0"/>
@@ -11,8 +11,8 @@
         </options>
     </pizza>
     <pizza>
-        <name>Meatfeast</name>
-        <description>Chicken, Sausage, Pepperoni and Sausage</description>
+        <name>Meatfeat</name>
+        <description>Meatfeat</description>
         <price>9.9900000000000002131628207280300557613372802734375</price>
         <options>
             <option size="SMALL" price="0"/>
@@ -21,8 +21,8 @@
         </options>
     </pizza>
     <pizza>
-        <name>Texas BBQ</name>
-        <description>Chicken Strips with Peppers, Mushrooms and Sweetcorn with a BBQ sause base</description>
+        <name>Hawiian</name>
+        <description>Hawiian</description>
         <price>9.9900000000000002131628207280300557613372802734375</price>
         <options>
             <option size="SMALL" price="0"/>
@@ -31,28 +31,8 @@
         </options>
     </pizza>
     <pizza>
-        <name>Chicken</name>
-        <description>Chicken, Sweetcorn</description>
-        <price>9.9900000000000002131628207280300557613372802734375</price>
-        <options>
-            <option size="SMALL" price="0"/>
-            <option size="MEDIUM" price="2.5"/>
-            <option size="LARGE" price="5"/>
-        </options>
-    </pizza>
-    <pizza>
-        <name>Seafood Special</name>
-        <description>Tuna, Prawns, Salmon, Olives and Sweetcorn</description>
-        <price>9.9900000000000002131628207280300557613372802734375</price>
-        <options>
-            <option size="SMALL" price="0"/>
-            <option size="MEDIUM" price="2.5"/>
-            <option size="LARGE" price="5"/>
-        </options>
-    </pizza>
-    <pizza>
-        <name>Veggie</name>
-        <description>Roast selection of Vegetables and olives with Goats Cheese</description>
+        <name>Seafood</name>
+        <description>Seafood</description>
         <price>9.9900000000000002131628207280300557613372802734375</price>
         <options>
             <option size="SMALL" price="0"/>
@@ -62,8 +42,38 @@
     </pizza>
     <pizza>
         <name>Pepperoni</name>
-        <description>Just Pepperoni</description>
+        <description>Pepporoni</description>
+        <price>9.9900000000000002131628207280300557613372802734375</price>
+        <options>
+            <option size="SMALL" price="0"/>
+            <option size="MEDIUM" price="2.5"/>
+            <option size="LARGE" price="5"/>
+        </options>
+    </pizza>
+    <pizza>
+        <name>4 Seasons</name>
+        <description>4 Seasons</description>
+        <price>9.9900000000000002131628207280300557613372802734375</price>
+        <options>
+            <option size="SMALL" price="0"/>
+            <option size="MEDIUM" price="2.5"/>
+            <option size="LARGE" price="5"/>
+        </options>
+    </pizza>
+    <pizza>
+        <name>Vegetarian</name>
+        <description>Vegetarian</description>
         <price>8.9900000000000002131628207280300557613372802734375</price>
+        <options>
+            <option size="SMALL" price="0"/>
+            <option size="MEDIUM" price="2.5"/>
+            <option size="LARGE" price="5"/>
+        </options>
+    </pizza>
+    <pizza>
+        <name>Texas BBQ</name>
+        <description>Texas BBQ</description>
+        <price>9.9900000000000002131628207280300557613372802734375</price>
         <options>
             <option size="SMALL" price="0"/>
             <option size="MEDIUM" price="2.5"/>
@@ -72,7 +82,7 @@
     </pizza>
     <drink>
         <name>Coke</name>
-        <description>Coca-cola</description>
+        <description>Coke</description>
         <price>0.6999999999999999555910790149937383830547332763671875</price>
         <options>
             <option size="CAN" price="0"/>
@@ -81,8 +91,8 @@
         </options>
     </drink>
     <drink>
-        <name>Fanta</name>
-        <description>Fanta</description>
+        <name>7UP</name>
+        <description>7UP</description>
         <price>0.6999999999999999555910790149937383830547332763671875</price>
         <options>
             <option size="CAN" price="0"/>
@@ -101,19 +111,9 @@
         </options>
     </drink>
     <drink>
-        <name>7-UP</name>
-        <description>7-UP</description>
-        <price>0.6999999999999999555910790149937383830547332763671875</price>
-        <options>
-            <option size="CAN" price="0"/>
-            <option size="SMALL_BOTTLE" price="0.59999999999999997779553950749686919152736663818359375"/>
-            <option size="LARGE_BOTTLE" price="1.3000000000000000444089209850062616169452667236328125"/>
-        </options>
-    </drink>
-    <drink>
         <name>Water</name>
-        <description>Still Water</description>
-        <price>0.5</price>
+        <description>Water</description>
+        <price>0.299999999999999988897769753748434595763683319091796875</price>
         <options>
             <option size="CAN" price="0"/>
             <option size="SMALL_BOTTLE" price="0.59999999999999997779553950749686919152736663818359375"/>
@@ -124,21 +124,24 @@
         <name>Garlic Bread</name>
         <description>Garlic Bread</description>
         <price>1.9899999999999999911182158029987476766109466552734375</price>
-    </side>
-    <side>
-        <name>Chips</name>
-        <description>Chips</description>
-        <price>1.1999999999999999555910790149937383830547332763671875</price>
-
-    </side>
-    <side>
-        <name>Wedges</name>
-        <description>Wedges</description>
-        <price>1.5</price>
+        <options/>
     </side>
     <side>
         <name>Ketchup</name>
         <description>Ketchup</description>
         <price>0.200000000000000011102230246251565404236316680908203125</price>
+        <options/>
+    </side>
+    <side>
+        <name>Chips</name>
+        <description>Chips</description>
+        <price>1.1999999999999999555910790149937383830547332763671875</price>
+        <options/>
+    </side>
+    <side>
+        <name>Wedges</name>
+        <description>Wedges</description>
+        <price>1.9899999999999999911182158029987476766109466552734375</price>
+        <options/>
     </side>
 </productList>
