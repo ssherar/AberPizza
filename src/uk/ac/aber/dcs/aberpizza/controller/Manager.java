@@ -75,7 +75,7 @@ public class Manager implements Observer, ActionListener {
 					currentOrder.decrementOption(pName, oName);
 				} if (items.isSide(window.getTable().getSelectedRow())) {
 					items.decrement(window.getTable().getSelectedRow());
-					currentOrder.decrement(pName);
+					currentOrder.decrementSide(oName);
 				}
 				
 				

@@ -151,11 +151,25 @@ public class Order {
 		}
 	}
 	
+	public void decrementSide(String sName) {
+		int pIndex = findItem(sName);
+		int quantity = items.get(pIndex).getQuantity();
+		System.out.println(items.get(pIndex));
+		if(quantity == 1) {
+			items.remove(pIndex);
+			
+		} else {
+			quantity -= 1;
+			items.get(pIndex).setQuantity(quantity);
+		}
+	
+	}
+	
 	public int findItem(String item) {
 		int i = -1;
 		for(OrderItem o : items) {
 			i++;
-			System.out.println(item.equals(o.getItem().getName()));
+			System.out.println(item + " " + o.getItem().getName());
 			if (o.getItem().getName().equals(item)) {
 				
 				return i;
