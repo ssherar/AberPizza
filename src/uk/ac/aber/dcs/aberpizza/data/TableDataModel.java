@@ -58,11 +58,16 @@ public class TableDataModel extends AbstractTableModel{
 			this.fireTableDataChanged();
 		} else {
 			data.add(new Object[] {p.getName(), quantity, Manager.round(p.getPrice()), 
-					Manager.round(p.getPrice().multiply(new BigDecimal(quantity))), false, "", -1
+					Manager.round(p.getPrice().multiply(new BigDecimal(quantity))), false, "", 
+					(p instanceof Side) ? -2 : -1
 			});
 			
 			this.fireTableRowsInserted(data.size() - 1, 0);
 		}
+	}
+	
+	public boolean isSide(int index) {
+		return ((Integer) data.get(index)[6] == -2);
 	}
 	
 	public void decrement(Product p) {

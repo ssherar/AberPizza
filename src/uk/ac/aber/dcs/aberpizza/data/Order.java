@@ -155,6 +155,7 @@ public class Order {
 		int i = -1;
 		for(OrderItem o : items) {
 			i++;
+			System.out.println(item.equals(o.getItem().getName()));
 			if (o.getItem().getName().equals(item)) {
 				
 				return i;

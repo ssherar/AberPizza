@@ -50,7 +50,6 @@ public class Manager implements Observer, ActionListener {
 				items.decrement(p.getProduct());
 			}
 		} else if(o instanceof PaymentListener) { 
-			PaymentListener p = (PaymentListener) o;
 			if(s.equals("cashedOff")) {
 				//showRecipt;
 				new ReceiptDialog(currentOrder, "Cash");
@@ -65,13 +64,18 @@ public class Manager implements Observer, ActionListener {
 				if(n == 0) {
 					items.clearAll();
 					choicesPanel.setVisible(false);
+					currentOrder = null;
 				}
 			} else if(s.equals("itemVoid")) {
 				String pName = items.getProductName(window.getTable().getSelectedRow());
 				String oName = items.getOptionName(window.getTable().getSelectedRow());
+				
 				if(items.isCancellable(window.getTable().getSelectedRow())) {
 					items.decrement(window.getTable().getSelectedRow());
 					currentOrder.decrementOption(pName, oName);
+				} if (items.isSide(window.getTable().getSelectedRow())) {
+					items.decrement(window.getTable().getSelectedRow());
+					currentOrder.decrement(pName);
 				}
 				
 				
@@ -108,7 +112,7 @@ public class Manager implements Observer, ActionListener {
 			if(till != null)
 				new SalesDialog(till.getOrders());
 			else
-				JOptionPane.showMessageDialog(window, "Till has not been loader or there has not been any orders today", 
+				JOptionPane.showMessageDialog(window, "Till has not been loaded", 
 						"Warning", JOptionPane.ERROR_MESSAGE);
 		} else if (cmd == "Z-Index") {
 			JOptionPane.showMessageDialog(window, "Total for the day: " + round(till.getTotalForDay()));
