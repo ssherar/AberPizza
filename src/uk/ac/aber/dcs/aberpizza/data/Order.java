@@ -69,18 +69,7 @@ public class Order {
 		return -1;
 	}
 	
-	public int findItem(String item) {
-		int i = -1;
-		for(OrderItem o : items) {
-			i++;
-			System.out.println(o.getItem().getName() +" " + item);
-			if (o.getItem().getName() == item) {
-				
-				return i;
-			}
-		}
-		return -1;
-	}
+	
 	
 	public void changeQuantity(int index, int quantity) {
 		items.get(index).setQuantity(items.get(index).getQuantity() + quantity);
@@ -137,5 +126,42 @@ public class Order {
 		// TODO Auto-generated method stub
 		return Manager.round(getSubtotal().subtract(discount));
 	}
+
+	public void decrementOption(String pName, String oName) {
+		int pIndex = findItem(pName);
+		int oIndex = findOption(pIndex, oName);
+		int quantity = items.get(pIndex).getOptions().get(oIndex).getQuantity();
+		
+		if(quantity == 1) {
+			
+		} else {
+			quantity -= 1;
+			items.get(pIndex).getOptions().get(oIndex).setQuantity(quantity);
+			items.get(pIndex).setQuantity(items.get(pIndex).getQuantity() - 1);
+		}
+	}
 	
+	public int findItem(String item) {
+		int i = -1;
+		for(OrderItem o : items) {
+			i++;
+			if (o.getItem().getName().equals(item)) {
+				
+				return i;
+			}
+		}
+		return -1;
+	}
+	
+	public int findOption(int product, String option) {
+		int i = -1;
+		for(OrderItemOption oio : items.get(product).getOptions()) {
+			i++;
+			if(oio.getOption().getSize().toString().equals(option)) {
+				System.out.println("findOption works");
+				return i;
+			}
+		}
+		return -1;
+	}
 }

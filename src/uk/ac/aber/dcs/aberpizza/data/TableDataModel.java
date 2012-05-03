@@ -153,7 +153,7 @@ public class TableDataModel extends AbstractTableModel{
 	}
 	
 	public String getProductName(int index) {
-		return  ""+data.get(index)[6];
+		return  ""+data.get(index)[5];
 	}
 	
 	private int find(Product p) {
@@ -188,6 +188,10 @@ public class TableDataModel extends AbstractTableModel{
 		}
 		
 		return foundIndex;
+	}
+
+	public String getOptionName(int selectedRow) {
+		return ""+data.get(selectedRow)[0];
 	}
 	
 	

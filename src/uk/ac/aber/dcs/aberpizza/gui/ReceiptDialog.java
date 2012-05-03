@@ -23,9 +23,11 @@ public class ReceiptDialog extends JDialog {
 		String itemRec = "";
 		
 		for(OrderItem i : order.getItems()) {
-			String tmp = ITEMS;
+			
 			if(i.getOptions().size() > 0) {
 				for(OrderItemOption oio: i.getOptions()) {
+					String tmp = ITEMS;
+					System.out.println(oio.getOption().getSize());
 					BigDecimal price = Manager.round(i.getItem().getPrice().add(oio.getOption().getPrice()));
 					int quantity = oio.getQuantity();
 					tmp = tmp.replaceAll("\\[\\:productName\\]", i.getItem().getDescription() + " - " + oio.getOption().getSize());
@@ -35,6 +37,7 @@ public class ReceiptDialog extends JDialog {
 					itemRec += tmp + "\n";
 				}
 			} else {
+				String tmp = ITEMS;
 				BigDecimal price = Manager.round(i.getItem().getPrice().multiply(new BigDecimal(i.getQuantity())));
 				tmp = tmp.replaceAll("\\[\\:productName\\]", i.getItem().getDescription());
 				tmp = tmp.replaceAll("\\[\\:quantity\\]", ""+i.getQuantity());

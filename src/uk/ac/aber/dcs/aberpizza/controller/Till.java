@@ -57,7 +57,6 @@ public class Till {
 		int retVal = jc.showOpenDialog(null);
 		
 		if(retVal == JFileChooser.APPROVE_OPTION) {
-			System.out.println(jc.getSelectedFile());
 			XMLDecoder decoder = new XMLDecoder(new BufferedInputStream(new FileInputStream(jc.getSelectedFile())));
 			return (Till) decoder.readObject();
 		}

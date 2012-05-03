@@ -71,10 +71,10 @@ public class Manager implements Observer, ActionListener {
 					items.clearAll();
 				}
 			} else if(s.equals("itemVoid")) {
-				String name = items.getProductName(window.getTable().getSelectedRow());
-				System.out.println(name);
+				String pName = items.getProductName(window.getTable().getSelectedRow());
+				String oName = items.getOptionName(window.getTable().getSelectedRow());
 				items.decrement(window.getTable().getSelectedRow());
-				//currentOrder.decrement(name);
+				currentOrder.decrementOption(pName, oName);
 				
 			}
 		}

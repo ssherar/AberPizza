@@ -41,7 +41,6 @@ public class OrderItem {
 	
 	public void addOption(OrderItemOption o) {
 		int i = findOption(o);
-		System.out.println("asd");
 		if(i < 0) {
 			options.add(o);
 		} else {
@@ -62,6 +61,5 @@ public class OrderItem {
 	
 	public void changeOptionQuantity(int index, int quantity) {
 		options.get(index).setQuantity(options.get(index).getQuantity() + quantity);
-		System.out.println(options.get(index).getQuantity());
 	}
 }
