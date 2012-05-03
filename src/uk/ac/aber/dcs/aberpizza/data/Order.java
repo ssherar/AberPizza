@@ -133,7 +133,13 @@ public class Order {
 		int quantity = items.get(pIndex).getOptions().get(oIndex).getQuantity();
 		
 		if(quantity == 1) {
-			
+			items.get(pIndex).getOptions().remove(oIndex);
+			int pQuantity = items.get(pIndex).getQuantity();
+			if(pQuantity == 1) {
+				items.remove(pIndex);
+			} else {
+				items.get(pIndex).setQuantity(pQuantity);
+			}
 		} else {
 			quantity -= 1;
 			items.get(pIndex).getOptions().get(oIndex).setQuantity(quantity);
