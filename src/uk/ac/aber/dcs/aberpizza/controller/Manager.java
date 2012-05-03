@@ -16,6 +16,7 @@ public class Manager implements Observer, ActionListener {
 	private Total total;
 	private Order currentOrder = null;
 	private Till till;
+	private Discount discount;
 	
 	
 	public Manager() {
@@ -24,6 +25,13 @@ public class Manager implements Observer, ActionListener {
 		items = window.getModel();
 		choicesPanel = window.getChoices();
 		total = window.getTotal();
+		
+		discount = new Discount();
+		discount.createDiscount(Sizes.LARGE, 3);
+		discount.createDiscount(Sizes.MEDIUM, 4);
+		discount.createDiscount(Sizes.SMALL, 5);
+		discount.createDiscount(new BigDecimal(15), 25);
+		discount.createDiscount(new BigDecimal(30), 50);
 		
 		
 		XMLParser parser = new XMLParser();
@@ -49,6 +57,8 @@ public class Manager implements Observer, ActionListener {
 				currentOrder.decrement(new OrderItem(p.getProduct()));
 				items.decrement(p.getProduct());
 			}
+			BigDecimal discountValue = discount.getDiscount(currentOrder);
+			currentOrder.setDiscount(discountValue);
 		} else if(o instanceof PaymentListener) { 
 			if(s.equals("cashedOff")) {
 				//showRecipt;
@@ -67,22 +77,24 @@ public class Manager implements Observer, ActionListener {
 					currentOrder = null;
 				}
 			} else if(s.equals("itemVoid")) {
-				String pName = items.getProductName(window.getTable().getSelectedRow());
-				String oName = items.getOptionName(window.getTable().getSelectedRow());
-				
-				if(items.isCancellable(window.getTable().getSelectedRow())) {
-					items.decrement(window.getTable().getSelectedRow());
-					currentOrder.decrementOption(pName, oName);
-				} if (items.isSide(window.getTable().getSelectedRow())) {
-					items.decrement(window.getTable().getSelectedRow());
-					currentOrder.decrementSide(oName);
+				if(window.getTable().getSelectedRow() != -1) { 
+					String pName = items.getProductName(window.getTable().getSelectedRow());
+					String oName = items.getOptionName(window.getTable().getSelectedRow());
+					
+					if(items.isCancellable(window.getTable().getSelectedRow())) {
+						items.decrement(window.getTable().getSelectedRow());
+						currentOrder.decrementOption(pName, oName);
+					} if (items.isSide(window.getTable().getSelectedRow())) {
+						items.decrement(window.getTable().getSelectedRow());
+						currentOrder.decrementSide(oName);
+					}
 				}
 				
 				
 			}
 		}
 		BigDecimal totalValue = items.calcTotal();
-		total.setValue(totalValue);
+		total.setValue(totalValue, (currentOrder == null) ? new BigDecimal(0.00) : Manager.round(currentOrder.getDiscount()));
 
 	}
 	

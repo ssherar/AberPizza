@@ -1,5 +1,6 @@
 package uk.ac.aber.dcs.aberpizza.gui;
 
+import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
 import java.util.LinkedList;
 
@@ -18,6 +19,7 @@ public class MenuBar extends JMenuBar {
 	private JMenu administrationMenu;
 	private JMenu helpMenu;
 	private Manager manager;
+	private int shortcutKey = Toolkit.getDefaultToolkit().getMenuShortcutKeyMask();
 
 	/**
 	 * 
@@ -47,7 +49,10 @@ public class MenuBar extends JMenuBar {
 		file.add(new JMenuItem("Save Day..."));
 		file.add(new JMenuItem("Exit"));
 		
-		file.get(0).setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_N, KeyEvent.META_MASK));
+		file.get(0).setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_N, shortcutKey));
+		file.get(1).setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_O, shortcutKey));
+		file.get(2).setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_S, shortcutKey));
+		file.get(3).setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_Q, shortcutKey));
 		for(int i = 0; i < file.size(); i++) {
 			file.get(i).addActionListener(manager);
 			fileMenu.add(file.get(i));

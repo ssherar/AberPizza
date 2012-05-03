@@ -12,7 +12,7 @@ public class Order {
 	 */
 	private String customerName;
 	private ArrayList<OrderItem> items;
-	private BigDecimal discount;
+	private BigDecimal discount = new BigDecimal(0);
 	private Date date;
 	
 	public Order() {
@@ -123,7 +123,7 @@ public class Order {
 
 	public BigDecimal getDiscount() {
 		// TODO Auto-generated method stub
-		return null;
+		return discount;
 	}
 
 	public BigDecimal getTotal() {
@@ -195,5 +195,9 @@ public class Order {
 
 	public Date getDate() {
 		return date;
+	}
+
+	public void setDiscount(BigDecimal discountValue) {
+		discount = discountValue;
 	}
 }
