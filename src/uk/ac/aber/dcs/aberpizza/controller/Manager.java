@@ -71,7 +71,11 @@ public class Manager implements Observer, ActionListener {
 					items.clearAll();
 				}
 			} else if(s.equals("itemVoid")) {
+				String name = items.getProductName(window.getTable().getSelectedRow());
+				System.out.println(name);
 				items.decrement(window.getTable().getSelectedRow());
+				//currentOrder.decrement(name);
+				
 			}
 		}
 		BigDecimal totalValue = items.calcTotal();
@@ -102,7 +106,7 @@ public class Manager implements Observer, ActionListener {
 		} else if(cmd == "Exit") {
 			System.exit(0);
 		} else if (cmd == "Sales Report") {
-			if(till != null && till.getOrders().size() == 0)
+			if(till != null)
 				new SalesDialog(till.getOrders());
 			else
 				JOptionPane.showMessageDialog(window, "Till has not been loader or there has not been any orders today", 

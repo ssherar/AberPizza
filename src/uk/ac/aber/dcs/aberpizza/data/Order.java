@@ -62,7 +62,20 @@ public class Order {
 		int i = -1;
 		for(OrderItem o : items) {
 			i++;
-			if(o.getItem().equals(item.getItem())) {
+			if(o.getItem().getName() == item.getItem().getName()) {
+				return i;
+			}
+		}
+		return -1;
+	}
+	
+	public int findItem(String item) {
+		int i = -1;
+		for(OrderItem o : items) {
+			i++;
+			System.out.println(o.getItem().getName() +" " + item);
+			if (o.getItem().getName() == item) {
+				
 				return i;
 			}
 		}
@@ -75,6 +88,17 @@ public class Order {
 	
 	public void decrement(OrderItem item) {
 		int index = findItem(item);
+		int quantity = items.get(index).getQuantity();
+		
+		if((quantity - 1) == 0) {
+			items.remove(index);
+		} else {
+			changeQuantity(index, -1);
+		}
+	}
+	
+	public void decrement(String product) {
+		int index = findItem(product);
 		int quantity = items.get(index).getQuantity();
 		
 		if((quantity - 1) == 0) {

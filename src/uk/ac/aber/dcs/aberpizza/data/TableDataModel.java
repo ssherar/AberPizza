@@ -152,6 +152,10 @@ public class TableDataModel extends AbstractTableModel{
 		this.fireTableRowsDeleted(0, rows);
 	}
 	
+	public String getProductName(int index) {
+		return  ""+data.get(index)[6];
+	}
+	
 	private int find(Product p) {
 		int foundIndex = -1;
 		for(int i = 0; i < data.size(); ++i) {
@@ -185,6 +189,7 @@ public class TableDataModel extends AbstractTableModel{
 		
 		return foundIndex;
 	}
+	
 	
 
 }
