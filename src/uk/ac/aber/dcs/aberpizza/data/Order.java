@@ -2,6 +2,7 @@ package uk.ac.aber.dcs.aberpizza.data;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Date;
 
 import uk.ac.aber.dcs.aberpizza.controller.Manager;
 
@@ -12,17 +13,20 @@ public class Order {
 	private String customerName;
 	private ArrayList<OrderItem> items;
 	private BigDecimal discount;
+	private Date date;
 	
 	public Order() {
 		this.customerName = "null";
 		items = new ArrayList<OrderItem>();
 		discount = new BigDecimal(0);
+		setDate(new Date());
 	}
 	
 	public Order(String customer) {
 		this.customerName = customer;
 		items = new ArrayList<OrderItem>();
 		discount = new BigDecimal(0);
+		setDate(new Date());
 	}
 	
 	/**
@@ -164,10 +168,17 @@ public class Order {
 		for(OrderItemOption oio : items.get(product).getOptions()) {
 			i++;
 			if(oio.getOption().getSize().toString().equals(option)) {
-				System.out.println("findOption works");
 				return i;
 			}
 		}
 		return -1;
+	}
+
+	public void setDate(Date date) {
+		this.date = date;
+	}
+
+	public Date getDate() {
+		return date;
 	}
 }

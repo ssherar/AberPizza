@@ -45,7 +45,7 @@ public class TableDataModel extends AbstractTableModel{
 		this.fireTableRowsInserted(data.size() - 1, 0);
 	}
 	
-	public void addRow(Product p, int quantity, boolean cancellable) {
+	public void addRow(Product p, int quantity) {
 		int foundIndex = this.find(p);
 
 		if(foundIndex > -1) {
@@ -58,7 +58,7 @@ public class TableDataModel extends AbstractTableModel{
 			this.fireTableDataChanged();
 		} else {
 			data.add(new Object[] {p.getName(), quantity, Manager.round(p.getPrice()), 
-					Manager.round(p.getPrice().multiply(new BigDecimal(quantity))), cancellable, "", -1
+					Manager.round(p.getPrice().multiply(new BigDecimal(quantity))), false, "", -1
 			});
 			
 			this.fireTableRowsInserted(data.size() - 1, 0);
@@ -129,7 +129,7 @@ public class TableDataModel extends AbstractTableModel{
 				this.fireTableDataChanged();
 			} else {
 				this.data.add(i + 1, new Object[] {
-						o.getSize(), 1, Manager.round(o.getPrice()), Manager.round(o.getPrice().multiply(new BigDecimal(1))), false, p.getName(), i
+						o.getSize(), 1, Manager.round(o.getPrice()), Manager.round(o.getPrice().multiply(new BigDecimal(1))), true, p.getName(), i
 				});
 				this.fireTableRowsInserted(i + 1, 0);
 			}
@@ -192,6 +192,10 @@ public class TableDataModel extends AbstractTableModel{
 
 	public String getOptionName(int selectedRow) {
 		return ""+data.get(selectedRow)[0];
+	}
+	
+	public boolean isCancellable(int index) {
+		return (Boolean) data.get(index)[4];
 	}
 	
 	

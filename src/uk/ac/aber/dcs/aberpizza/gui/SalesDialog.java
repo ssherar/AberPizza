@@ -1,29 +1,15 @@
 package uk.ac.aber.dcs.aberpizza.gui;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.util.ArrayList;
-import java.util.EventListener;
-import java.util.EventObject;
 
-import javax.swing.DefaultCellEditor;
 import javax.swing.JButton;
-import javax.swing.JCheckBox;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
 import javax.swing.JTable;
-import javax.swing.UIManager;
-import javax.swing.event.CellEditorListener;
 import javax.swing.table.AbstractTableModel;
-import javax.swing.table.TableCellEditor;
-import javax.swing.table.TableCellRenderer;
 
 import uk.ac.aber.dcs.aberpizza.data.Order;
 
@@ -33,6 +19,7 @@ public class SalesDialog extends JDialog implements ActionListener {
 
 	public SalesDialog(ArrayList<Order> order) {
 		this.setLayout(new BorderLayout());
+		setTitle("Sales for today");
 		setSize(500, 500);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
@@ -49,9 +36,6 @@ public class SalesDialog extends JDialog implements ActionListener {
 		this.repaint();
 		this.doLayout();
 		setVisible(true);
-		
-
-
 	}
 	
 	@Override
@@ -86,7 +70,7 @@ public class SalesDialog extends JDialog implements ActionListener {
 		public Object getValueAt(int row, int col) {
 			// TODO Auto-generated method stub
 			if(col == 0) {
-				return null; /*data.get(row).getDate();*/
+				return data.get(row).getDate();
 			} else if(col == 1) {
 				return data.get(row).getCustomerName();
 			} else if(col == 2) {

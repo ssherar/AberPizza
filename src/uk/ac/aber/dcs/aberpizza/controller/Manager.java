@@ -4,12 +4,7 @@ import javax.swing.*;
 import uk.ac.aber.dcs.aberpizza.data.*;
 import uk.ac.aber.dcs.aberpizza.gui.*;
 
-import java.awt.*;
 import java.awt.event.*;
-import java.beans.XMLEncoder;
-import java.io.BufferedOutputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.*;
@@ -46,7 +41,7 @@ public class Manager implements Observer, ActionListener {
 			ProductModel p = (ProductModel) o;
 			if(s.equals("priceIncreased")) {
 				currentOrder.addItem(new OrderItem(p.getProduct()));
-				items.addRow(p.getProduct(), 1, true);
+				items.addRow(p.getProduct(), 1);
 			} else if(s.equals("optionAdded")) {;
 				currentOrder.addOption(p.getOption(), new OrderItem(p.getProduct()));
 				items.addOption(p.getOption(), p.getProduct());
@@ -69,12 +64,16 @@ public class Manager implements Observer, ActionListener {
 								"Warning!", JOptionPane.YES_NO_OPTION,JOptionPane.WARNING_MESSAGE, null, null, s);
 				if(n == 0) {
 					items.clearAll();
+					choicesPanel.setVisible(false);
 				}
 			} else if(s.equals("itemVoid")) {
 				String pName = items.getProductName(window.getTable().getSelectedRow());
 				String oName = items.getOptionName(window.getTable().getSelectedRow());
-				items.decrement(window.getTable().getSelectedRow());
-				currentOrder.decrementOption(pName, oName);
+				if(items.isCancellable(window.getTable().getSelectedRow())) {
+					items.decrement(window.getTable().getSelectedRow());
+					currentOrder.decrementOption(pName, oName);
+				}
+				
 				
 			}
 		}
@@ -111,6 +110,8 @@ public class Manager implements Observer, ActionListener {
 			else
 				JOptionPane.showMessageDialog(window, "Till has not been loader or there has not been any orders today", 
 						"Warning", JOptionPane.ERROR_MESSAGE);
+		} else if (cmd == "Z-Index") {
+			JOptionPane.showMessageDialog(window, "Total for the day: " + round(till.getTotalForDay()));
 		}
 	}
 	
