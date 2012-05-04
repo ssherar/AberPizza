@@ -8,20 +8,30 @@ import javax.swing.*;
 
 import uk.ac.aber.dcs.aberpizza.controller.Manager;
 
+// TODO: Auto-generated Javadoc
 /**
- * This is the menu bar for the GUI
- * @author samuelsherar
+ * This is the menu bar for the GUI.
  *
+ * @author samuelsherar
  */
 public class MenuBar extends JMenuBar {
+	
+	/** The file menu. */
 	private JMenu fileMenu;
+	
+	/** The administration menu. */
 	private JMenu administrationMenu;
+	
+	/** The manager. */
 	private Manager manager;
+	
+	/** The shortcut key to work X-platform. */
 	private int shortcutKey = Toolkit.getDefaultToolkit().getMenuShortcutKeyMask();
 
 	/**
-	 * 
-	 * @param m
+	 * Instantiates a new menu bar.
+	 *
+	 * @param m the m
 	 */
 	public MenuBar(Manager m) {
 		fileMenu = new JMenu("File");
@@ -36,6 +46,9 @@ public class MenuBar extends JMenuBar {
 		this.add(administrationMenu);
 	}
 	
+	/**
+	 * Populate file menu.
+	 */
 	private void populateFile() {
 		LinkedList<JMenuItem> file = new LinkedList<JMenuItem>();
 		
@@ -54,6 +67,9 @@ public class MenuBar extends JMenuBar {
 		}
 	}
 	
+	/**
+	 * Populate administration menu.
+	 */
 	private void populateAdministration() {
 		LinkedList<JMenuItem> administration = new LinkedList<JMenuItem>();
 		

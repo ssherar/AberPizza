@@ -10,24 +10,56 @@ import java.util.Set;
 
 import apple.laf.JRSUIConstants.Size;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class Discount
+ * It handles all the mathematics and logical functions to give the customer
+ * the best discount possible (but that's not a good way to do business...)
+ * @author Samuel B Sherar (sbs1)
+ */
 public class Discount {
+	
+	/** The size discount stored as a hashmap of the Size as the key, and the amount needed before discount applies */
 	private Hashtable<Sizes, Integer> sizeDiscount;
+	
+	/** The amount discount stored as a hashmap of BigDecimal as the condition, and the percent stored as an Integer*/
 	private Hashtable<BigDecimal, Integer> amountDiscount;
 	
+	/**
+	 * Instantiates a new discount,
+	 */
 	public Discount() {
 		sizeDiscount = new Hashtable<Sizes, Integer>();
 		amountDiscount = new Hashtable<BigDecimal, Integer>();
 	}
 	
+	/**
+	 * Creates the size discount.
+	 *
+	 * @param size the size
+	 * @param quantity the quantity
+	 */
 	public void createDiscount(Sizes size, int quantity) {
 		sizeDiscount.put(size, quantity);
 		System.out.println(sizeDiscount.get(size));
 	}
 	
+	/**
+	 * Creates the percentage off discount.
+	 *
+	 * @param total the total
+	 * @param percent the percent
+	 */
 	public void createDiscount(BigDecimal total, int percent) {
 		amountDiscount.put(total, percent);
 	}
 	
+	/**
+	 * Gets the discount which saves the customer the most money
+	 *
+	 * @param o the Order item
+	 * @return the discount
+	 */
 	public BigDecimal getDiscount(Order o) {
 		BigDecimal sizeDiscountPrice = calcSize(o);
 		BigDecimal percentDiscountPrice = calcPercent(o);
@@ -36,6 +68,12 @@ public class Discount {
 		return (sizeDiscountPrice.compareTo(percentDiscountPrice) > 0) ? sizeDiscountPrice : percentDiscountPrice;
 	}
 	
+	/**
+	 * Calculates the discount if it meets the conditions of the size discount.
+	 *
+	 * @param o the oorder
+	 * @return the discount
+	 */
 	private BigDecimal calcSize(Order o) {
 		BigDecimal total = new BigDecimal(0.00);
 		BigDecimal lowestPrice = new BigDecimal(0.00);
@@ -77,6 +115,13 @@ public class Discount {
 		return null;
 	}
 	
+	/**
+	 * Calculates the discount with the percentage discount,
+	 * that is if it meets the requirements.
+	 *
+	 * @param o the Order
+	 * @return the discount
+	 */
 	private BigDecimal calcPercent(Order o) {
 		BigDecimal discountAmount = new BigDecimal(0);
 		BigDecimal orderTotal = o.getTotal();

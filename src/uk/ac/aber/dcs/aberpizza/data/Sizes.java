@@ -1,13 +1,33 @@
 package uk.ac.aber.dcs.aberpizza.data;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Enum Sizes.
+ */
 public enum Sizes {
+	
+	/** The SMALL size for pizzas. */
 	SMALL,
+	
+	/** The MEDIUM size for pizzas. */
 	MEDIUM,
+	
+	/** The LARGE size for pizzas. */
 	LARGE,
+	
+	/** The CAN size for drinks. */
 	CAN,
+	
+	/** The SMALL bottle size for drinks. */
 	SMALL_BOTTLE,
+	
+	/** The LARGE bottle size for drinks. */
 	LARGE_BOTTLE;
 	
+	/**
+	 * This overriden method changes the enums textual value to be properly capitalised
+	 * @returns the formatted String
+	 */
 	@Override
 	public String toString() {
 		String[] s = super.toString().split("_");

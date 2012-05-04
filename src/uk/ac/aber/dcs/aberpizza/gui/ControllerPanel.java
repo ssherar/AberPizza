@@ -12,12 +12,28 @@ import uk.ac.aber.dcs.aberpizza.controller.ChoiceListener;
 import uk.ac.aber.dcs.aberpizza.controller.Manager;
 import uk.ac.aber.dcs.aberpizza.data.Order;
 
+/**
+ * The parent panel which holds the Choices panel and the Payment panel
+ * @author Samuel B Sherar (sbs1)
+ * @see uk.ac.aber.dcs.aberpizza.gui.Choices
+ * @see uk.ac.aber.dcs.aberpizza.gui.Payment
+ */
 public class ControllerPanel extends JPanel implements ActionListener{
-	private Choices s;
+	
+	/** The choices pane. */
+	private Choices choicesPane;
+	
+	/** The manager. */
 	private Manager manager;
-	private JPanel customerPane;
+	
+	/** The customer name. */
 	private JTextField customerName;
 	
+	/**
+	 * Instantiates a new controller panel.
+	 *
+	 * @param m the manager
+	 */
 	public ControllerPanel(Manager m) {
 		super(new BorderLayout());
 		
@@ -25,8 +41,8 @@ public class ControllerPanel extends JPanel implements ActionListener{
 		
 		setPreferredSize(new Dimension(400,0));
 		
-		s = new Choices(m);
-		s.setVisible(false);
+		choicesPane = new Choices(m);
+		choicesPane.setVisible(false);
 		Payment payment = new Payment(m);
 		JPanel dummyPanel = new JPanel();
 		dummyPanel.add(new JLabel("Name: "));
@@ -36,17 +52,28 @@ public class ControllerPanel extends JPanel implements ActionListener{
 		create.addActionListener(this);
 		dummyPanel.add(create);
 		this.add(dummyPanel, BorderLayout.NORTH);
-		this.add(s, BorderLayout.CENTER);
+		this.add(choicesPane, BorderLayout.CENTER);
 		this.add(payment, BorderLayout.SOUTH);
 		
 		ChoiceListener l = new ChoiceListener();
 		
 	}
 	
+	/**
+	 * Gets the choices.
+	 *
+	 * @return the choices
+	 */
 	public Choices getChoices() {
-		return s;
+		return choicesPane;
 	}
 	
+	/**
+	 * Sets all components in the pane (and child JPanels) setEnabled() functions
+	 *
+	 * @param set the set
+	 * @param r the pane
+	 */
 	public void setEnabled(boolean set, Component r) {
 		Component[] comps = (r != null) ? ((JPanel) r).getComponents() : this.getComponents();
 		for(Component j : comps) {
@@ -59,18 +86,24 @@ public class ControllerPanel extends JPanel implements ActionListener{
 		}
 	}
 
+	/* (non-Javadoc)
+	 * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if(customerName.getText().length() < 1 && !manager.currentOrderSet()) {
 			return;
 		}
 		manager.setCurrentOrder(new Order(customerName.getText()));
-		s.setVisible(true);
+		choicesPane.setVisible(true);
 	}
 	
+	/* (non-Javadoc)
+	 * @see javax.swing.JComponent#setVisible(boolean)
+	 */
 	@Override
 	public void setVisible(boolean set) {
-		s.setVisible(set);
+		choicesPane.setVisible(set);
 		if(!set)customerName.setText("");
 	}
 	

@@ -9,12 +9,31 @@ import javax.swing.*;
 import uk.ac.aber.dcs.aberpizza.controller.Manager;
 import uk.ac.aber.dcs.aberpizza.data.TableDataModel;
 
+/**
+ * The parent frame for the GUI
+ * @author Samuel B Sherar (sbs1)
+ * @see uk.ac.aber.dcs.aberpizza.gui.DataPanel
+ * @see uk.ac.aber.dcs.aberpizza.gui.ControllerPanel
+ *
+ */
 public class MainFrame extends JFrame{
+	
+	/** The data pane. */
 	private DataPanel dataPane;
+	
+	/** The controller pane. */
 	private ControllerPanel controllerPane;
+	
+	/** The manager. */
 	private Manager manager;
 	
+	/**
+	 * Instantiates a new main frame.
+	 *
+	 * @param m the m
+	 */
 	public MainFrame(Manager m) {
+		/* Sets the GUI to follow the operatings systems styling */
 		try {
 			 UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 		} catch(Exception e) {
@@ -42,26 +61,55 @@ public class MainFrame extends JFrame{
 
 	}
 	
+	/**
+	 * Gets the items.
+	 *
+	 * @return the items
+	 */
 	public JTable getItems() {
 		return dataPane.getItems();
 	}
 	
+	/**
+	 * Gets the choices.
+	 *
+	 * @return the choices
+	 */
 	public Choices getChoices() {
 		return controllerPane.getChoices();
 	}
 	
+	/**
+	 * Gets the model.
+	 *
+	 * @return the model
+	 */
 	public TableDataModel getModel() {
 		return dataPane.getModel();
 	}
 
+	/**
+	 * Gets the total.
+	 *
+	 * @return the total
+	 */
 	public Total getTotal() {
 		return dataPane.getTotal();
 	}
 	
+	/**
+	 * Gets the table.
+	 *
+	 * @return the table
+	 */
 	public JTable getTable() {
 		return dataPane.getItems();
 	}
 	
+	/**
+	 * Overrides the setEnabled() function to enable the controller pane or not
+	 * as the case maybe.
+	 */
 	@Override
 	public void setEnabled(boolean set) {
 		controllerPane.setEnabled(set, null);

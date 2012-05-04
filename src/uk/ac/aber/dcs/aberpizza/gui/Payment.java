@@ -9,9 +9,22 @@ import uk.ac.aber.dcs.aberpizza.controller.PaymentListener;
 
 import java.awt.*;
 
+/**
+ * This class holds the buttons for payment and nulling an
+ * order or an item
+ * @author Samuel B Sherar (sbs1)
+ *
+ */
 public class Payment extends JPanel {
+	
+	/** The manager. */
 	private Manager manager;
 	
+	/**
+	 * Instantiates a new payment.
+	 *
+	 * @param m the manager
+	 */
 	public Payment(Manager m) {
 		super(new GridLayout(1, 4));
 		manager = m;

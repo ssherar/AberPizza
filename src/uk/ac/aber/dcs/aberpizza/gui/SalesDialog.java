@@ -13,10 +13,26 @@ import javax.swing.table.AbstractTableModel;
 
 import uk.ac.aber.dcs.aberpizza.data.Order;
 
+/**
+ * Displays the orders for the day using a JTable. We are also able to display the receipt
+ * with the itemised order
+ * @author Samuel B Sherar (sbs1)
+ * @see uk.ac.aber.dcs.aberpizza.gui.ReceiptDialog
+ *
+ */
 public class SalesDialog extends JDialog implements ActionListener {
+	
+	/** The Table Model. */
 	private TableModel tm;
+	
+	/** The table. */
 	private JTable table;
 
+	/**
+	 * Instantiates a new sales dialog.
+	 *
+	 * @param order the array of orders
+	 */
 	public SalesDialog(ArrayList<Order> order) {
 		this.setLayout(new BorderLayout());
 		setTitle("Sales for today");
@@ -38,6 +54,9 @@ public class SalesDialog extends JDialog implements ActionListener {
 		setVisible(true);
 	}
 	
+	/* (non-Javadoc)
+	 * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if(table.getSelectedRow() > -1) {
@@ -46,26 +65,47 @@ public class SalesDialog extends JDialog implements ActionListener {
 		}
 	}
 
+	/**
+	 * The Class TableModel.
+	 */
 	public class TableModel extends AbstractTableModel {
+		
+		/** The column names. */
 		private String[] columnNames = {"Date", "Name", "Total"};
+		
+		/** The data. */
 		private ArrayList<Order> data;
 
+		/**
+		 * Instantiates a new table model.
+		 *
+		 * @param orders the orders
+		 */
 		TableModel(ArrayList<Order> orders) {
 			data = orders;
 		}
 
+		/* (non-Javadoc)
+		 * @see javax.swing.table.TableModel#getColumnCount()
+		 */
 		@Override
 		public int getColumnCount() {
 			// TODO Auto-generated method stub
 			return 3;
 		}
 
+		/* (non-Javadoc)
+		 * @see javax.swing.table.TableModel#getRowCount()
+		 */
 		@Override
 		public int getRowCount() {
 			// TODO Auto-generated method stub
 			return data.size();
 		}
 
+		/* (non-Javadoc)
+		 * @see javax.swing.table.TableModel#getValueAt(int, int)
+		 */
 		@Override
 		public Object getValueAt(int row, int col) {
 			// TODO Auto-generated method stub
@@ -78,11 +118,20 @@ public class SalesDialog extends JDialog implements ActionListener {
 			} else return null;
 		}
 
+		/* (non-Javadoc)
+		 * @see javax.swing.table.AbstractTableModel#getColumnName(int)
+		 */
 		@Override
 		public String getColumnName(int col) {
 			return columnNames[col];
 		}
 		
+		/**
+		 * Gets the order.
+		 *
+		 * @param row the row index
+		 * @return the order at the selected row
+		 */
 		public Order getOrder(int row) {
 			return data.get(row);
 		}

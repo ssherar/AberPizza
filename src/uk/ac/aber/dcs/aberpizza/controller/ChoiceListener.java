@@ -2,14 +2,12 @@ package uk.ac.aber.dcs.aberpizza.controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
-import java.util.Observable;
 
 import uk.ac.aber.dcs.aberpizza.data.Option;
 import uk.ac.aber.dcs.aberpizza.data.Product;
 import uk.ac.aber.dcs.aberpizza.data.ProductModel;
 import uk.ac.aber.dcs.aberpizza.gui.Choices;
-// TODO: Auto-generated Javadoc
+
 
 /**
  * This listener listens to events from the Choise panel, and adds data to

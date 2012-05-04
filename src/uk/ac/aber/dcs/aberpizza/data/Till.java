@@ -20,9 +20,10 @@ import javax.swing.JFileChooser;
 
 import uk.ac.aber.dcs.aberpizza.data.*;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class Till.
+ * The overall till class, which loads and creates a till for a speciffic date. 
+ * @author Samuel B Sherar (sbs1)
+ *
  */
 public class Till {
 	
@@ -30,7 +31,7 @@ public class Till {
 	private ArrayList<Order> orders = new ArrayList<Order>();
 	
 	/**
-	 * Instantiates a new till.
+	 * Instantiates a new till. Used for XML serialisation
 	 */
 	public Till() {
 		
@@ -39,7 +40,7 @@ public class Till {
 	/**
 	 * Adds the order.
 	 *
-	 * @param o the o
+	 * @param o the order
 	 */
 	public void addOrder (Order o) {
 		orders.add(o);
@@ -79,7 +80,7 @@ public class Till {
 	}
 	
 	/**
-	 * Load.
+	 * Loads a till through a JOptionChooser.
 	 *
 	 * @return the till
 	 * @throws IOException Signals that an I/O exception has occurred.
@@ -96,10 +97,10 @@ public class Till {
 	}
 	
 	/**
-	 * Load.
+	 * Loads a till through a file name. Used if a till for a day already exists.
 	 *
 	 * @param fileName the file name
-	 * @return the till
+	 * @return the till object
 	 * @throws IOException Signals that an I/O exception has occurred.
 	 */
 	public static Till load(File fileName) throws IOException {
