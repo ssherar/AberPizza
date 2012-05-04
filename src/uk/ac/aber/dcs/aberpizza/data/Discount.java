@@ -8,7 +8,6 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
 
-import apple.laf.JRSUIConstants.Size;
 
 // TODO: Auto-generated Javadoc
 /**
