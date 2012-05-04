@@ -11,13 +11,11 @@ import uk.ac.aber.dcs.aberpizza.controller.Manager;
 /**
  * This is the menu bar for the GUI
  * @author samuelsherar
- * @version
  *
  */
 public class MenuBar extends JMenuBar {
 	private JMenu fileMenu;
 	private JMenu administrationMenu;
-	private JMenu helpMenu;
 	private Manager manager;
 	private int shortcutKey = Toolkit.getDefaultToolkit().getMenuShortcutKeyMask();
 
@@ -28,17 +26,14 @@ public class MenuBar extends JMenuBar {
 	public MenuBar(Manager m) {
 		fileMenu = new JMenu("File");
 		administrationMenu = new JMenu("Administration");
-		helpMenu = new JMenu("Help");
 		
 		manager = m;
 		
 		this.populateFile();
 		this.populateAdministration();
-		this.populateHelp();
 		
 		this.add(fileMenu);
 		this.add(administrationMenu);
-		this.add(helpMenu);
 	}
 	
 	private void populateFile() {
@@ -71,13 +66,4 @@ public class MenuBar extends JMenuBar {
 		}
 	}
 	
-	private void populateHelp() {
-		LinkedList<JMenuItem> help = new LinkedList<JMenuItem>();
-		
-		help.add(new JMenuItem("About"));
-		
-		for(int i = 0; i < help.size(); i++) {
-			helpMenu.add(help.get(i));
-		}
-	}
 }

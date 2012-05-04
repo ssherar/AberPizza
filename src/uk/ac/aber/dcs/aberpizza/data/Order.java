@@ -107,6 +107,7 @@ public class Order {
 		for(OrderItem i : items) {
 			ret += i.getItem().getDescription() + "\t\t\t" + i.getQuantity()+"\n";
 		}
+		
 		return ret;
 	}
 	

@@ -5,20 +5,45 @@ import uk.ac.aber.dcs.aberpizza.data.*;
 import uk.ac.aber.dcs.aberpizza.gui.*;
 
 import java.awt.event.*;
+import java.io.File;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.*;
 
+/**
+ * The manager is the startpoint for the program. It handles all the data to be 
+ * passed onto the data and gui classes
+ * @author Samuel B Sherar (sbs1)
+ *
+ */
 public class Manager implements Observer, ActionListener {
+	
+	/** The window. */
 	private MainFrame window; 
+	
+	/** The TableModel for the items. */
 	private TableDataModel items;
+	
+	/** The choices panel. */
 	private Choices choicesPanel;
+	
+	/** The total label. */
 	private Total total;
+	
+	/** The current order. It is saved locally before adding into the till*/
 	private Order currentOrder = null;
+	
+	/** The till. */
 	private Till till;
+	
+	/** The discount class*/
 	private Discount discount;
 	
 	
+	/**
+	 * Instantiates a new manager with default variables. It also loads 
+	 * the products and creates several discounts
+	 */
 	public Manager() {
 		window = new MainFrame(this);
 		window.setEnabled(false);
@@ -40,6 +65,9 @@ public class Manager implements Observer, ActionListener {
 		choicesPanel.init(p);
 	}
 
+	/* (non-Javadoc)
+	 * @see java.util.Observer#update(java.util.Observable, java.lang.Object)
+	 */
 	@Override
 	public void update(Observable o, Object s) {
 		if(!(s instanceof String)) {
@@ -68,7 +96,15 @@ public class Manager implements Observer, ActionListener {
 				currentOrder = null;
 				choicesPanel.setVisible(false);
 				items.clearAll();
+			}  else if(s.equals("paymentCard")) {
+				new ReceiptDialog(currentOrder, "Card");
+				till.addOrder(currentOrder);
+				till.save();
+				currentOrder = null;
+				choicesPanel.setVisible(false);
+				items.clearAll();
 			} else if(s.equals("cancelOrder")) {
+
 				int n = JOptionPane.showOptionDialog(window,"Are you sure that you want to cancel this order. THIS CANNOT BE UNDONE",
 								"Warning!", JOptionPane.YES_NO_OPTION,JOptionPane.WARNING_MESSAGE, null, null, s);
 				if(n == 0) {
@@ -98,17 +134,38 @@ public class Manager implements Observer, ActionListener {
 
 	}
 	
+	/**
+	 * A static method to round the BigDecimal to 2 D.P
+	 *
+	 * @param r the BigDecimal to be rounded
+	 * @return the rounded BigDecimal
+	 */
 	public static BigDecimal round(BigDecimal r) {
 		return r.setScale(2, BigDecimal.ROUND_HALF_EVEN);
 	}
 
 
+	/* (non-Javadoc)
+	 * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		String cmd = e.getActionCommand();
 		if(cmd == "New Day") {
+			Calendar cal = new GregorianCalendar();
 			window.setEnabled(true);
-			till = new Till();
+			String fileName = "till_"+ cal.get(Calendar.YEAR) + "_"+ (cal.get(Calendar.MONTH) + 1) + "_" + cal.get(Calendar.DAY_OF_MONTH) + ".xml";
+			File todayTill = new File(fileName);
+			if(!todayTill.exists()) {
+				till = new Till();
+			} else {
+				JOptionPane.showMessageDialog(window, "Day already exists. Loading todays till...");
+				try {
+					till = Till.load(todayTill);
+				} catch (IOException e1) {
+					e1.printStackTrace();
+				}
+			}
 		} else if(cmd == "Load Day...") {
 			try {
 				till = Till.load();
@@ -127,10 +184,17 @@ public class Manager implements Observer, ActionListener {
 				JOptionPane.showMessageDialog(window, "Till has not been loaded", 
 						"Warning", JOptionPane.ERROR_MESSAGE);
 		} else if (cmd == "Z-Index") {
-			JOptionPane.showMessageDialog(window, "Total for the day: " + round(till.getTotalForDay()));
+			String zindex = "Total for the day: £" + round(till.getTotalForDay())+"\n";
+			zindex += "Number of orders " + till.getOrders().size();
+			JOptionPane.showMessageDialog(window, zindex);
 		}
 	}
 	
+	/**
+	 * checks if Current Order is set
+	 *
+	 * @return true, if successful
+	 */
 	public boolean currentOrderSet() {
 		if(this.currentOrder == null) {
 			return false;
@@ -138,10 +202,20 @@ public class Manager implements Observer, ActionListener {
 		return true;
 	}
 	
+	/**
+	 * Sets the current order.
+	 *
+	 * @param o the new current order
+	 */
 	public void setCurrentOrder(Order o) {
 		this.currentOrder = o;
 	}
 	
+	/**
+	 * Sets the customer name.
+	 *
+	 * @param s the new customer name
+	 */
 	public void setCustomerName(String s) {
 		this.currentOrder.setCustomerName(s);
 	}
